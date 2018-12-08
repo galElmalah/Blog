@@ -7,11 +7,7 @@ import { Blog } from "./Blog/Blog";
 
 const Check = ({ text }) => {
   console.log(text);
-  return (
-    <h1 className={"page-title"} style={{ width: "100px", height: "100px" }}>
-      {text}
-    </h1>
-  );
+  return <h1 className={"page-title"}>{text}</h1>;
 };
 export const Body = () => (
   <div className={"page"}>
@@ -29,6 +25,16 @@ export const Body = () => (
           render={props => <Check {...props} text={"about"} />}
         />
         <Route exact path="/blog" component={Blog} />
+        <Route
+          exact
+          path={"/blog/:id"}
+          render={props => <Check {...props} text={"blog post"} />}
+        />
+        <Route
+          exact
+          path="/"
+          render={props => <Check {...props} text={"home"} />}
+        />
       </Switch>
     </PageContainer>
   </div>

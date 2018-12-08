@@ -5,7 +5,7 @@ import { Navigation } from "./Navigation";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
-const getMainActivePath = path => path.match(/\w+/)[0];
+const getMainActivePath = path => path.split("/")[1];
 
 const links = ["home", "about", "blog"];
 const Header = ({ location }) => (

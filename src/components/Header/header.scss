@@ -1,5 +1,5 @@
 $navigationColor: #130e1c;
-
+$mainBlue: rgb(0, 153, 255);
 .header {
   width: 100vw;
   background: $navigationColor;
@@ -18,7 +18,7 @@ a {
 .tab {
   padding-bottom: 10px;
   text-transform: capitalize;
-  width: 70px;
+  width: 90px;
   font-weight: bold;
   text-align: center;
   color: whitesmoke;
@@ -26,7 +26,7 @@ a {
   border-bottom: 4px transparent solid;
   transition: border-bottom 150ms ease-in-out;
   &.active {
-    border-bottom: 4px rgb(0, 153, 255) solid;
+    border-bottom: 4px $mainBlue solid;
   }
 }
 
