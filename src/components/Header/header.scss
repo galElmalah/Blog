@@ -1,0 +1,59 @@
+$navigationColor: #130e1c;
+
+.header {
+  width: 100vw;
+  background: $navigationColor;
+  .container {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+.tab {
+  padding-bottom: 10px;
+  text-transform: capitalize;
+  width: 70px;
+  font-weight: bold;
+  text-align: center;
+  color: whitesmoke;
+  cursor: pointer;
+  border-bottom: 4px transparent solid;
+  transition: border-bottom 150ms ease-in-out;
+  &.active {
+    border-bottom: 4px rgb(0, 153, 255) solid;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navigation {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    background: $navigationColor;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  .header {
+    .container {
+      height: 42px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .header {
+    .container {
+      width: 80%;
+    }
+  }
+}

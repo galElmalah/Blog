@@ -1,0 +1,12 @@
+$mainColor: #eef2f6;
+
+.tag {
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: darken($mainColor, 5%);
+}
