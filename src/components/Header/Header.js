@@ -5,23 +5,29 @@ import { Navigation } from "./Navigation";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
-const getMainActivePath = path => path.split("/")[1];
+const getMainNavigationActivePath = path => path.split("/")[1];
 
-const links = ["home", "about", "blog"];
+const navLinks = [
+  { title: "home", link: "home" },
+  { title: "about me", link: "about" },
+  { title: "blog", link: "blog" }
+];
 const Header = ({ location }) => (
   <header className={"header"}>
     <div className="container">
       <Logo />
-      <Navigation currentlyActive={getMainActivePath(location.pathname)}>
-        {({ activeTab, onClickHandler }) =>
-          links.map(link => (
+      <Navigation
+        currentlyActive={getMainNavigationActivePath(location.pathname)}
+      >
+        {({ isActive, onClickHandler }) =>
+          navLinks.map(navLink => (
             <Link
-              key={link}
-              to={`/${link}`}
-              className={(activeTab === link ? "active" : "") + " tab"}
-              onClick={() => onClickHandler(link)}
+              key={navLink.title}
+              to={`/${navLink.link}`}
+              className={(isActive(navLink.title) ? "active" : "") + " tab"}
+              onClick={() => onClickHandler(navLink.title)}
             >
-              {link}
+              {navLink.title}
             </Link>
           ))
         }

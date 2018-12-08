@@ -1,5 +1,7 @@
 $navigationColor: #130e1c;
 $mainBlue: rgb(0, 153, 255);
+$mainColor: #eef2f6;
+
 .header {
   width: 100vw;
   background: $navigationColor;
@@ -25,6 +27,9 @@ a {
   cursor: pointer;
   border-bottom: 4px transparent solid;
   transition: border-bottom 150ms ease-in-out;
+  &:hover:not(.active) {
+    border-bottom: 4px darken($mainColor, 10%) solid;
+  }
   &.active {
     border-bottom: 4px $mainBlue solid;
   }

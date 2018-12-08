@@ -20,4 +20,5 @@ const posts = [
   }
 ];
 
-export const getPosts = cb => setTimeout(() => cb(posts), 3000);
+export const getPosts = () =>
+  new Promise(resolve => setTimeout(() => resolve(posts), 3000));

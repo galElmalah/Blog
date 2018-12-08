@@ -5,9 +5,12 @@ export class Navigation extends React.Component {
     super(props);
     this.state = {
       activeTab: props.currentlyActive || "home",
+      isActive: this.isActive,
       onClickHandler: this.onClickHandler
     };
   }
+
+  isActive = id => this.state.activeTab === id;
 
   onClickHandler = index => {
     this.setState({ activeTab: index });

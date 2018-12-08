@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import { Route, Switch } from "react-router-dom";
 import { PageContainer } from "../PageContainer/PageContainer";
 import * as a from "./body.scss";
-import { Blog } from "./Blog/Blog";
+import Blog from "./Blog/Blog";
 
 const Check = ({ text }) => {
   console.log(text);
