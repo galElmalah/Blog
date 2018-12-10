@@ -1,7 +1,7 @@
 import * as React from "react";
 import { truncate } from "../utils";
 import * as s from "./postCard.scss";
-import { Tag } from "../../../Tag";
+import { TagContainer } from "../../../Tag";
 import { Link } from "react-router-dom";
 import { Button } from "../../../Button/Button";
 import { Loader } from "../../../Loader/Loader";
@@ -40,9 +40,15 @@ export const PostCard = ({ title, imageUrl, tags = [], id, history }) => (
       </Link>
       <span className="divider" />
       <div className={"tags"}>
-        {tags.map(tag => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
+        <TagContainer>
+          {({ addTagFilter }) => {
+            return tags.map(tag => (
+              <span onClick={() => addTagFilter(tag)} className="tag">
+                {tag}
+              </span>
+            ));
+          }}
+        </TagContainer>
       </div>
     </section>
   </div>

@@ -1,1 +1,1 @@
-export { Tag } from "./Tag";
+export { TagContainer } from "./Tag";

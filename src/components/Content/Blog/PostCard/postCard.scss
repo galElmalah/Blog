@@ -2,6 +2,20 @@ $mainColor: #eef2f6;
 $cardPadding: 25px;
 $mainBlue: rgb(0, 153, 255);
 
+.post-card {
+  position: relative;
+  width: 49%;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 8px;
+  margin-top: 20px;
+  .tags {
+    min-height: 28px;
+    display: flex;
+    box-sizing: border-box;
+  }
+}
+
 .post-title {
   margin: 0;
   text-transform: capitalize;
@@ -63,20 +77,6 @@ $mainBlue: rgb(0, 153, 255);
     .post-image {
       transform: scale(1.2);
     }
-  }
-}
-
-.post-card {
-  position: relative;
-  width: 49%;
-  box-sizing: border-box;
-  background: white;
-  border-radius: 8px;
-  margin-top: 20px;
-  .tags {
-    min-height: 28px;
-    display: flex;
-    box-sizing: border-box;
   }
 }
 

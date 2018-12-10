@@ -14,3 +14,20 @@
   margin-top: 30px;
   width: 60%;
 }
+
+.activeTags {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  > span {
+    margin-right: 10px;
+  }
+}
+
+.removeTag {
+  margin: 0 10px;
+  border-radius: 50%;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.486);
+  }
+}
