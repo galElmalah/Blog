@@ -7,8 +7,8 @@ import { TagContainer } from "../../Tag";
 
 export default class Blog extends React.Component {
   componentDidMount() {
-    const { posts } = this.props;
-    if (!posts.length) {
+    const { posts, loadingPosts } = this.props;
+    if (!posts.length && !loadingPosts) {
       this.props.fetchPosts();
     }
   }

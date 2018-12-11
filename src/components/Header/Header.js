@@ -8,9 +8,9 @@ import { withRouter } from "react-router";
 const getMainNavigationActivePath = path => path.split("/")[1];
 
 const navLinks = [
-  { title: "home", link: "home" },
-  { title: "about me", link: "about" },
-  { title: "blog", link: "blog" }
+  { label: "home", link: "home" },
+  { label: "about me", link: "about" },
+  { label: "blog", link: "blog" }
 ];
 const Header = ({ location }) => (
   <header className={"header"}>
@@ -22,12 +22,12 @@ const Header = ({ location }) => (
         {({ isActive, onClickHandler }) =>
           navLinks.map(navLink => (
             <Link
-              key={navLink.title}
+              key={navLink.label}
               to={`/${navLink.link}`}
-              className={(isActive(navLink.title) ? "active" : "") + " tab"}
-              onClick={() => onClickHandler(navLink.title)}
+              className={(isActive(navLink.label) ? "active" : "") + " tab"}
+              onClick={() => onClickHandler(navLink.label)}
             >
-              {navLink.title}
+              {navLink.label}
             </Link>
           ))
         }
