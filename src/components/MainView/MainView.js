@@ -2,14 +2,14 @@ import * as React from "react";
 import Header from "../Header/Header";
 import { Route, Switch } from "react-router-dom";
 import { PageContainer } from "../PageContainer/PageContainer";
-import * as a from "./body.scss";
-import Blog from "./Blog/Blog";
+import * as a from "./mainView.scss";
+import Blog from "../../containers/Blog";
 
 const Check = ({ text }) => {
   console.log(text);
   return <h1 className={"page-title"}>{text}</h1>;
 };
-export const Body = () => (
+export const MainView = () => (
   <div className={"page"}>
     <Header />
     <PageContainer>

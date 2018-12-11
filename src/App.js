@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Body } from "./components/Content/Body";
+import { MainView } from "./components/MainView/MainView";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Provider store={store}>
-          <Body />
+          <MainView />
         </Provider>
       </BrowserRouter>
     );

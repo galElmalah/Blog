@@ -1,19 +1,32 @@
 import {
   SET_POSTS,
   ADD_TAG_FILTER,
-  REMOVE_TAG_FILTER
+  REMOVE_TAG_FILTER,
+  FETCH_POSTS
 } from "../actions/actions";
 import { combineReducers } from "redux";
 
 const initialState = {
   posts: [],
-  filterByTags: {}
+  filterByTags: {},
+  loadingPosts: false
 };
+
+function loadingPosts(state = initialState.loadingPosts, action) {
+  switch (action.type) {
+    case FETCH_POSTS:
+      return true;
+    case SET_POSTS:
+      return false;
+    default:
+      return false;
+  }
+}
 
 function posts(state = initialState.posts, action) {
   switch (action.type) {
     case SET_POSTS:
-      return [...state, ...action.posts];
+      return [...state, ...action.payload];
     default:
       return state;
   }
@@ -22,9 +35,9 @@ function posts(state = initialState.posts, action) {
 function filterByTags(state = initialState.filterByTags, action) {
   switch (action.type) {
     case ADD_TAG_FILTER:
-      return { ...state, [action.tag]: true };
+      return { ...state, [action.payload]: true };
     case REMOVE_TAG_FILTER: {
-      const { [action.tag]: tagToRemove, ...restOfTheTags } = state;
+      const { [action.payload]: tagToRemove, ...restOfTheTags } = state;
       return restOfTheTags;
     }
     default:
@@ -32,4 +45,4 @@ function filterByTags(state = initialState.filterByTags, action) {
   }
 }
 
-export default combineReducers({ posts, filterByTags });
+export default combineReducers({ posts, filterByTags, loadingPosts });

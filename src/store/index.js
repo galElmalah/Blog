@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
-
+import { apiMiddleware } from "./middleware/apiCalls";
 import rootReducer from "./reducers";
-const store = createStore(rootReducer, applyMiddleware(logger));
+
+const store = createStore(rootReducer, applyMiddleware(logger, apiMiddleware));
 
 window.store = store;
 

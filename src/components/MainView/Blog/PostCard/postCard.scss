@@ -2,6 +2,10 @@ $mainColor: #eef2f6;
 $cardPadding: 25px;
 $mainBlue: rgb(0, 153, 255);
 
+.disabled {
+  pointer-events: none;
+}
+
 .post-card {
   position: relative;
   width: 49%;
