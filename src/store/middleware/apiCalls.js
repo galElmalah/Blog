@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getPosts } from "../../components/Content/Blog/posts";
+import { getPosts } from "../../components/MainView/Blog/posts";
 const defaultErrorAction = err => console.error(err);
 /**
  * {
