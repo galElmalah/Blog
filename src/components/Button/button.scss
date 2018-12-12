@@ -1,28 +1,40 @@
 $mainBlue: rgb(2, 137, 228);
 $disabled: rgb(192, 192, 192);
+$hoverColor: #f0f7fe;
+
 .button {
   cursor: pointer;
+  border: none;
   font-size: 1em;
-  padding: 5px;
-  min-width: 150px;
+  padding: 8px;
   box-sizing: border-box;
-  border-radius: 4px;
-  background: $mainBlue;
-  border: solid 1px darken($mainBlue, 10%);
+  border-radius: 8px;
+  background: transparent;
   outline: none;
-  color: whitesmoke;
-  text-transform: capitalize;
+  color: $mainBlue;
+  text-transform: uppercase;
+  font-weight: 500;
   transition: background-color 200ms;
   &:hover {
-    background: lighten($mainBlue, 5%);
+    background: $hoverColor;
   }
   &:active {
-    background: $mainBlue;
+    background: darken($hoverColor, 5%);
   }
 
   &.disabled {
     pointer-events: none;
-    background: $disabled;
+    color: $disabled;
     border: none;
+  }
+
+  &.dark-btn {
+    $hoverColor: #c5d1dd;
+    &:hover {
+      background: $hoverColor;
+    }
+    &:active {
+      background: darken($hoverColor, 5%);
+    }
   }
 }

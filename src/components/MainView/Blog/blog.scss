@@ -1,6 +1,25 @@
+$mainColor: #e0e0e0;
+
 .page-title {
   margin: 0;
   text-transform: capitalize;
+}
+
+.tagDelete {
+  width: 32px;
+  height: 32px;
+  margin-left: -10px;
+  display: flex;
+  font-size: 110%;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  border-radius: 50%;
+  transition: all 200ms;
+  &:hover {
+    background: #b6b6b6;
+    color: white;
+  }
 }
 
 .posts-container {

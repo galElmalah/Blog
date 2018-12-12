@@ -30,10 +30,6 @@ export const PostCard = ({ title, imageUrl, tags = [], id, history }) => (
       </section>
     </Link>
     <section className={"padding"}>
-      <Link to={`/blog/${id}`} className={`${!imageUrl ? " disabled" : ""}`}>
-        <Button disabled={!imageUrl}>read more</Button>
-      </Link>
-      <span className="divider" />
       <div className={"tags"}>
         <TagContainer>
           {({ addTagFilter }) => {
@@ -45,6 +41,22 @@ export const PostCard = ({ title, imageUrl, tags = [], id, history }) => (
           }}
         </TagContainer>
       </div>
+      <span className="divider" />
+
+      <Link
+        key={"share"}
+        to={`/blog/${id}`}
+        className={`btn ${!imageUrl ? " disabled" : ""}`}
+      >
+        <Button disabled={!imageUrl}>share</Button>
+      </Link>
+      <Link
+        key={"readMore"}
+        to={`/blog/${id}`}
+        className={`btn ${!imageUrl ? " disabled" : ""}`}
+      >
+        <Button disabled={!imageUrl}>read more</Button>
+      </Link>
     </section>
   </div>
 );

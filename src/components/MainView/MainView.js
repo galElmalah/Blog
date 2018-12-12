@@ -4,9 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import { PageContainer } from "../PageContainer/PageContainer";
 import * as a from "./mainView.scss";
 import Blog from "../../containers/Blog";
+import PostView from "../../containers/Blog/PostView";
 
-const Check = ({ text }) => {
-  console.log(text);
+const Check = ({ text, ...rest }) => {
+  console.log(text, rest);
   return <h1 className={"page-title"}>{text}</h1>;
 };
 export const MainView = () => (
@@ -25,11 +26,7 @@ export const MainView = () => (
           render={props => <Check {...props} text={"about"} />}
         />
         <Route exact path="/blog" component={Blog} />
-        <Route
-          exact
-          path={"/blog/:id"}
-          render={props => <Check {...props} text={"blog post"} />}
-        />
+        <Route exact path={"/blog/:postId"} component={PostView} />
         <Route
           exact
           path="/"

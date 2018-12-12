@@ -18,6 +18,9 @@ $mainBlue: rgb(0, 153, 255);
     display: flex;
     box-sizing: border-box;
   }
+  .btn {
+    margin-right: 10px;
+  }
 }
 
 .post-title {
@@ -86,6 +89,7 @@ $mainBlue: rgb(0, 153, 255);
 
 .padding {
   padding: $cardPadding;
+  padding-bottom: 15px;
   box-sizing: border-box;
 }
 

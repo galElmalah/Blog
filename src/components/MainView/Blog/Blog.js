@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as s from "./blog.scss";
 import { PostCard } from "./PostCard/PostCard";
-
 import { Button } from "../../Button/Button";
 import { TagContainer } from "../../Tag";
 
@@ -21,7 +20,6 @@ export default class Blog extends React.Component {
 
   render() {
     const { activeTags, loadingPosts, fetchPosts, posts } = this.props;
-    console.log(loadingPosts);
     return (
       <>
         <h1 className={"page-title"}>Blog</h1>
@@ -30,7 +28,8 @@ export default class Blog extends React.Component {
             {({ removeTagFilter }) => {
               return activeTags.map(tag => (
                 <span onClick={() => removeTagFilter(tag)} className="tag">
-                  <small>x</small> {tag}
+                  <small className={"tagDelete"}>x</small>
+                  {tag}
                 </span>
               ));
             }}
@@ -45,7 +44,8 @@ export default class Blog extends React.Component {
         <div className={"load-more-button"}>
           <Button
             onClick={fetchPosts}
-            style={{ width: "100%" }}
+            theme={"dark"}
+            style={{ width: "100%"}}
             disabled={loadingPosts}
           >
             Load More Posts

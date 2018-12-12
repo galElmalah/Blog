@@ -1,18 +1,24 @@
-$mainColor: #eef2f6;
+$mainColor: #e0e0e0;
 
 .tag {
+  display: inline-flex;
   cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
   margin-right: 10px;
   font-weight: 500;
   text-transform: capitalize;
   padding: 5px 10px;
   box-sizing: border-box;
-  border-radius: 8px;
-  background: darken($mainColor, 5%);
+  height: 32px;
+
+  border-radius: 16px;
+  background: $mainColor;
+  transition: background 200ms;
   &:hover {
-    background: darken($mainColor, 4%);
+    background: lighten($mainColor, 3%);
   }
   &:active {
-    background: darken($mainColor, 5%);
+    background: $mainColor;
   }
 }
