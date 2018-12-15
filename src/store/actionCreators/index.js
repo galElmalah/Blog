@@ -21,3 +21,4 @@ export const fetchPosts = () => ({
     label: FETCH_POSTS
   }
 });
+
