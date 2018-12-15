@@ -1,5 +1,4 @@
-import axios from "axios";
-import { getPosts } from "../../components/MainView/Blog/posts";
+import API from "../requester";
 const defaultErrorAction = err => console.error(err);
 /**
  * {
@@ -22,12 +21,12 @@ export const apiMiddleware = ({
   const { url, method = "GET", data, onSuccess, onFailure } = action.payload;
   try {
     // should be replaced with axios once the server is in place
-    const response = await getPosts();
+    const { data } = await API.request({ url, method });
     console.log("url: ", url);
     console.log("method: ", method);
     console.log("data: ", data);
-    console.log("response: ", response);
-    dispatch(onSuccess(response));
+    console.log("response: ", data);
+    dispatch(onSuccess(data));
   } catch (err) {
     onFailure ? onFailure(err) : defaultErrorAction(err);
   }

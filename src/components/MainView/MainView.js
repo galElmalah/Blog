@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { PageContainer } from "../PageContainer/PageContainer";
 import * as a from "./mainView.scss";
 import Blog from "../../containers/Blog";
+import { Login } from "./Login/Login";
 import PostView from "../../containers/Blog/PostView";
 
 const Check = ({ text, ...rest }) => {
@@ -27,6 +28,7 @@ export const MainView = () => (
         />
         <Route exact path="/blog" component={Blog} />
         <Route exact path={"/blog/:postId"} component={PostView} />
+        <Route exact path="/login" component={Login} />
         <Route
           exact
           path="/"

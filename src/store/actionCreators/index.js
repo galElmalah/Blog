@@ -16,7 +16,7 @@ export const removeTagFilter = tag => ({
 export const fetchPosts = () => ({
   type: API,
   payload: {
-    url: "localhost:3000",
+    url: "/posts",
     onSuccess: setPosts,
     label: FETCH_POSTS
   }

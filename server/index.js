@@ -1,3 +1,10 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 const posts = rand => [
   {
     tags: ["tdd", "javascript"],
@@ -19,6 +26,9 @@ const posts = rand => [
     id: "4" + rand
   }
 ];
+app.get("/posts", (req, res) => {
+  console.log("reviced req for posts");
+  res.send(posts(Math.random()));
+});
 
-export const getPosts = () =>
-  new Promise(resolve => setTimeout(() => resolve(posts(Math.random())), 3000));
+app.listen(3001, () => console.log(`server ${3001} listening on port ${3001}`));
