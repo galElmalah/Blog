@@ -1,6 +1,11 @@
+.login-page {
+  text-align: center;
+}
+
 .form-wrapper {
-  margin: 0 auto;
+  margin: 100px auto;
   display: flex;
+  align-items: center;
   flex-direction: column;
   input {
     width: 200px;
@@ -17,7 +22,7 @@
     margin-top: 20px;
     font-weight: 500;
   }
-  .submit-btn {
+  .login-btn {
     width: 200px;
     margin-top: 30px;
   }
@@ -35,7 +40,7 @@
       font-size: 1.3em;
       font-weight: 600;
     }
-    .submit-btn {
+    .login-btn {
       width: 100%;
       > button {
         width: 100%;

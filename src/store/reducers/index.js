@@ -2,14 +2,15 @@ import {
   SET_POSTS,
   ADD_TAG_FILTER,
   REMOVE_TAG_FILTER,
-  FETCH_POSTS
-} from "../actions/actions";
-import { combineReducers } from "redux";
+  FETCH_POSTS,
+} from '../actions/actions';
+import user from './userReducer';
+import { combineReducers } from 'redux';
 
 const initialState = {
   posts: [],
   filterByTags: {},
-  loadingPosts: false
+  loadingPosts: false,
 };
 
 function loadingPosts(state = initialState.loadingPosts, action) {
@@ -45,4 +46,4 @@ function filterByTags(state = initialState.filterByTags, action) {
   }
 }
 
-export default combineReducers({ posts, filterByTags, loadingPosts });
+export default combineReducers({ posts, filterByTags, loadingPosts, user });

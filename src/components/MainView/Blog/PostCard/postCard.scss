@@ -48,7 +48,13 @@ $mainBlue: rgb(0, 153, 255);
   border-bottom-right-radius: 0;
   // background: darken($mainColor, 10%);
   display: flex;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(
+    -45deg,
+    darken($mainColor, 10%),
+    darken($mainColor, 5%),
+    darken($mainColor, 15%),
+    darken($mainColor, 13%)
+  );
   background-size: 600% 600%;
 
   justify-content: center;

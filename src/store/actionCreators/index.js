@@ -3,22 +3,36 @@ import {
   ADD_TAG_FILTER,
   REMOVE_TAG_FILTER,
   API,
-  FETCH_POSTS
-} from "../actions/actions";
+  FETCH_POSTS,
+  USER_LOGIN_SUCCESS,
+  LOGGING_IN,
+} from '../actions/actions';
 
 export const setPosts = posts => ({ type: SET_POSTS, payload: posts });
 export const addTagFilter = tag => ({ type: ADD_TAG_FILTER, payload: tag });
 export const removeTagFilter = tag => ({
   type: REMOVE_TAG_FILTER,
-  payload: tag
+  payload: tag,
 });
 
 export const fetchPosts = () => ({
   type: API,
   payload: {
-    url: "/posts",
+    url: '/posts',
     onSuccess: setPosts,
-    label: FETCH_POSTS
-  }
+    label: FETCH_POSTS,
+  },
 });
 
+const setUser = user => ({ type: USER_LOGIN_SUCCESS, payload: user.username });
+
+export const loginUser = credentials => ({
+  type: API,
+  payload: {
+    data: credentials,
+    method: 'POST',
+    url: '/login',
+    onSuccess: setUser,
+    label: LOGGING_IN,
+  },
+});
