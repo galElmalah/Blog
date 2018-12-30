@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('morgan');
+const { connect } = require('./model');
 const postsRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 const app = express();
@@ -15,4 +16,12 @@ app.use('/', userRoutes);
 app.use('/posts', postsRoutes);
 
 const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`server running listening on port ${port}`));
+
+connect()
+  .then(client => {
+    console.log('db connected');
+    app.listen(port, () =>
+      console.log(`server running listening on port ${port}`)
+    );
+  })
+  .catch(console.log);
