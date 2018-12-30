@@ -3,7 +3,7 @@ import {
   ADD_TAG_FILTER,
   REMOVE_TAG_FILTER,
   FETCH_POSTS,
-} from '../actions/actions';
+} from '../../actions/actions';
 import { combineReducers } from 'redux';
 
 const initialState = {

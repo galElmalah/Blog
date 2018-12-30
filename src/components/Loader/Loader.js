@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as s from './loader.scss';
 
-export const Loader = () => (
-  <div className="lds-ring">
+export const Loader = ({ disabled }) => (
+  <div className={'lds-ring ' + (disabled ? 'disabled' : '')}>
     <div />
     <div />
     <div />

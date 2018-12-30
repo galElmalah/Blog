@@ -9,15 +9,24 @@ const initialState = {
   currentlyLoggedInUser: '',
   isAuthenticated: false,
   loading: false,
+  token: '',
 };
 
+function token(state = initialState.token, action) {
+  switch (action.type) {
+    case USER_LOGIN_SUCCESS:
+      return action.payload.token;
+    default:
+      return state;
+  }
+}
 function currentlyLoggedInUser(
   state = initialState.currentlyLoggedInUser,
   action
 ) {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
-      return action.payload;
+      return action.payload.username;
     default:
       return state;
   }
@@ -51,4 +60,5 @@ export default combineReducers({
   loading,
   currentlyLoggedInUser,
   isAuthenticated,
+  token,
 });

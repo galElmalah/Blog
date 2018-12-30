@@ -1,6 +1,7 @@
 $mainBlue: rgb(2, 137, 228);
 $disabled: rgb(192, 192, 192);
 $hoverColor: #f0f7fe;
+$mainColor: #eef2f6;
 
 .button {
   cursor: pointer;
@@ -15,6 +16,7 @@ $hoverColor: #f0f7fe;
   text-transform: uppercase;
   font-weight: 500;
   transition: background-color 200ms;
+
   &:hover {
     background: $hoverColor;
   }
@@ -36,5 +38,41 @@ $hoverColor: #f0f7fe;
     &:active {
       background: darken($hoverColor, 5%);
     }
+  }
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

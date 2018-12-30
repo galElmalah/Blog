@@ -40,7 +40,7 @@ export class Login extends Component {
             onChange={this.onChange}
           />
           <div className={'login-btn'}>
-            <Button onClick={this.onSubmit} theme={'dark'} disabled={loading}>
+            <Button onClick={this.onSubmit} theme={'dark'} loading={loading}>
               login
             </Button>
           </div>

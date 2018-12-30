@@ -24,7 +24,10 @@ export const fetchPosts = () => ({
   },
 });
 
-const setUser = user => ({ type: USER_LOGIN_SUCCESS, payload: user.username });
+const setUser = ({ username, token = '' }) => ({
+  type: USER_LOGIN_SUCCESS,
+  payload: { username, token },
+});
 
 export const loginUser = credentials => ({
   type: API,

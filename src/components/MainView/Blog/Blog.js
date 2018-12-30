@@ -21,7 +21,11 @@ export default class Blog extends React.Component {
           <TagContainer>
             {({ removeTagFilter }) => {
               return activeTags.map(tag => (
-                <span onClick={() => removeTagFilter(tag)} className="tag">
+                <span
+                  key={tag}
+                  onClick={() => removeTagFilter(tag)}
+                  className="tag"
+                >
                   <small className={'tagDelete'}>x</small>
                   {tag}
                 </span>
@@ -38,13 +42,14 @@ export default class Blog extends React.Component {
   }
 }
 
-const LoadMoreButton = ({ onClick, disabled }) => (
+const LoadMoreButton = ({ onClick, disabled, ...props }) => (
   <div className={'load-more-button'}>
     <Button
       onClick={onClick}
       theme={'dark'}
       style={{ width: '100%' }}
       disabled={disabled}
+      {...props}
     >
       Load More Posts
     </Button>
