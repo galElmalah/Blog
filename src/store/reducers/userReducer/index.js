@@ -1,7 +1,7 @@
 import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
-  LOGGING_IN,
+  LOGIN_REQUEST,
 } from '../../actions/actions';
 import { combineReducers } from 'redux';
 
@@ -36,7 +36,7 @@ function isAuthenticated(state = initialState.isAuthenticated, action) {
 
 function loading(state = initialState.loading, action) {
   switch (action.type) {
-    case LOGGING_IN:
+    case LOGIN_REQUEST:
       return true;
     case USER_LOGIN_SUCCESS:
       return false;

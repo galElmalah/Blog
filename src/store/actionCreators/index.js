@@ -5,7 +5,7 @@ import {
   API,
   FETCH_POSTS,
   USER_LOGIN_SUCCESS,
-  LOGGING_IN,
+  LOGIN_REQUEST,
 } from '../actions/actions';
 
 export const setPosts = posts => ({ type: SET_POSTS, payload: posts });
@@ -33,6 +33,6 @@ export const loginUser = credentials => ({
     method: 'POST',
     url: '/login',
     onSuccess: setUser,
-    label: LOGGING_IN,
+    label: LOGIN_REQUEST,
   },
 });
