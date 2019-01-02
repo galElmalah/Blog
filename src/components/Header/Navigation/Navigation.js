@@ -1,12 +1,12 @@
-import * as React from "react";
-import * as s from "./navigation.scss";
+import * as React from 'react';
+import * as s from './navigation.scss';
 export class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: props.currentlyActive || "home",
+      activeTab: props.currentlyActive || 'home',
       isActive: this.isActive,
-      onClickHandler: this.onClickHandler
+      onClickHandler: this.onClickHandler,
     };
   }
 
@@ -17,8 +17,6 @@ export class Navigation extends React.Component {
   };
 
   render() {
-    return (
-      <div className={"navigation"}>{this.props.children(this.state)}</div>
-    );
+    return <>{this.props.children(this.state)}</>;
   }
 }

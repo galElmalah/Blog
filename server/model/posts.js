@@ -32,7 +32,7 @@ module.exports = class Posts {
     };
     return db.query(query);
   }
-  
+
   static getPostById({ postId }) {
     const query = {
       text: `SELECT * FROM Posts WHERE id = $1;`,
@@ -40,8 +40,13 @@ module.exports = class Posts {
     };
     return db.query(query);
   }
-  static updatePostById() {}
+  static updatePostById({ postId }) {}
   static deletePostById({ postId }) {
     // DELETE FROM Posts where id = postId
+    const query = {
+      text: `DELETE FROM Posts WHERE id = $1;`,
+      values: [postId],
+    };
+    return db.query(query);
   }
 };

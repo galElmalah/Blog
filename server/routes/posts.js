@@ -14,12 +14,10 @@ router.get('/', async (req, res) => {
 
 router.get('/:postId', async (req, res) => {
   const post = await Posts.getPostById({ postId: req.params.postId });
-  console.log(post);
-  res.send(post);
+  res.send(post.rows);
 });
 
 router.post('/', async (req, res) => {
-  console.log('recived POST to create a post');
   const body = 'some other awesome post';
   const title = 'some other awesome post';
   await Posts.createPost({
@@ -37,9 +35,14 @@ router.put('/:postId', (req, res) => {
   res.send(postsGenerator(Math.random()));
 });
 
-router.delete('/:postId', (req, res) => {
-  console.log('recived POST to create a post');
-  res.send(postsGenerator(Math.random()));
+router.delete('/:postId', async (req, res) => {
+  try {
+    await Posts.deletePostById({ postId: req.params.postId });
+    res.send({ postId: req.params.postId });
+  } catch (e) {
+    console.error(e);
+    res.send('error');
+  }
 });
 
 module.exports = router;

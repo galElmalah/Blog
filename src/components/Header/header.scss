@@ -2,6 +2,12 @@ $navigationColor: #130e1c;
 $mainBlue: rgb(0, 153, 255);
 $mainColor: #eef2f6;
 
+.tabs-navigation {
+  display: flex;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
 .header {
   width: 100vw;
   background: $navigationColor;
