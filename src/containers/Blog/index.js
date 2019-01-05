@@ -6,7 +6,7 @@ const mapStateToProps = state => {
   return {
     posts: postsSelector(state),
     activeTags: Object.keys(state.blog.filterByTags),
-    loadingPosts: state.blog.loadingPosts,
+    loading: state.blog.loading,
   };
 };
 

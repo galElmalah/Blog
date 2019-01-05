@@ -6,14 +6,14 @@ import { TagContainer } from '../../Tag';
 
 export default class Blog extends React.Component {
   componentDidMount() {
-    const { posts, loadingPosts } = this.props;
-    if (!posts.length && !loadingPosts) {
+    const { posts, loading } = this.props;
+    if (!posts.length && !loading) {
       this.props.fetchPosts();
     }
   }
 
   render() {
-    const { activeTags, loadingPosts, fetchPosts, posts } = this.props;
+    const { activeTags, loading, fetchPosts, posts } = this.props;
     return (
       <>
         <h1 className={'page-title'}>Blog</h1>
@@ -34,9 +34,9 @@ export default class Blog extends React.Component {
           </TagContainer>
         </div>
         <section className={'posts-container'}>
-          <PostsList posts={posts} isLoading={loadingPosts} />
+          <PostsList posts={posts} isLoading={loading} />
         </section>
-        <LoadMoreButton onClick={fetchPosts} disabled={loadingPosts} />
+        <LoadMoreButton onClick={fetchPosts} disabled={loading} />
       </>
     );
   }

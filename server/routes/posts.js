@@ -35,7 +35,6 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:postId', (req, res) => {
-  console.log(`params::${req.params}, body::${req.body}`);
   res.send(postsGenerator(Math.random()));
 });
 

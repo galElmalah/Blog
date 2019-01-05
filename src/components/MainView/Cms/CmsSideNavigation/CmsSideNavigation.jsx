@@ -3,8 +3,8 @@ import { Navigation } from '../../../Header/Navigation';
 import { Link } from 'react-router-dom';
 import * as s from './cmsSideNavigation.scss';
 const navLinks = [
-  { label: 'create posts', link: 'cms/create-post' },
   { label: 'manage posts', link: 'cms/manage' },
+  { label: 'create posts', link: 'cms/create-post' },
 ];
 
 export class CmsSideNavigation extends Component {
@@ -17,6 +17,7 @@ export class CmsSideNavigation extends Component {
 
   render() {
     const { isVisible } = this.state;
+    console.log('this.props.activeAtFirst', this.props.activeAtFirst);
     return (
       <div className={`side-navigation ${isVisible ? '' : 'hide'}`}>
         <div
@@ -28,16 +29,16 @@ export class CmsSideNavigation extends Component {
           Menu
         </div>
         <h3> CMS </h3>
-        <Navigation currentlyActive={'manage posts'}>
+        <Navigation currentlyActive={this.props.activeAtFirst}>
           {({ isActive, onClickHandler }) =>
             navLinks.map(navLink => (
               <Link
                 key={navLink.label}
                 to={`/${navLink.link}`}
                 className={
-                  (isActive(navLink.label) ? 'active' : '') + ' nav-link'
+                  (isActive(navLink.link) ? 'active' : '') + ' nav-link'
                 }
-                onClick={() => onClickHandler(navLink.label)}
+                onClick={() => onClickHandler(navLink.link)}
               >
                 {navLink.label}
               </Link>

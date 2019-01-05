@@ -5,20 +5,26 @@ import {
   FETCH_POSTS,
   CREATE_POST_SUCCESS,
   DELETE_POST_SUCCESS,
+  CREATE_POST_REQUEST,
+  DELETE_POST_REQUEST,
 } from '../../actions/actions';
 import { combineReducers } from 'redux';
 
 const initialState = {
   posts: [],
   filterByTags: {},
-  loadingPosts: false,
+  loading: false,
 };
 
-function loadingPosts(state = initialState.loadingPosts, action) {
+function loading(state = initialState.loading, action) {
   switch (action.type) {
     case FETCH_POSTS:
+    case CREATE_POST_REQUEST:
+    case DELETE_POST_REQUEST:
       return true;
     case SET_POSTS:
+    case CREATE_POST_SUCCESS:
+    case DELETE_POST_SUCCESS:
       return false;
     default:
       return false;
@@ -55,4 +61,4 @@ function filterByTags(state = initialState.filterByTags, action) {
   }
 }
 
-export default combineReducers({ loadingPosts, filterByTags, posts });
+export default combineReducers({ loading, filterByTags, posts });

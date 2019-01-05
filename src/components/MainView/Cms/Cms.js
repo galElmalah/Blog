@@ -7,14 +7,21 @@ import { CmsSideNavigation } from './CmsSideNavigation/CmsSideNavigation';
 import PostsManager from '../../../containers/Cms/PostsManager';
 
 export class Cms extends Component {
-  onRichTextEditorChange = value => {
-    this.setState({ body: value });
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
+  getCurrentlyActivePath = () => {
+    const activeAtFirst =
+      this.props.location.pathname.split('/')[2] || 'manage';
+    return `cms/${activeAtFirst}`;
   };
 
   render() {
     return (
       <div className={'cms-page'}>
-        <CmsSideNavigation />
+        <CmsSideNavigation activeAtFirst={this.getCurrentlyActivePath()} />
         <PageContainer>
           <Route exact path="/cms/create-post" component={PostCreator} />
           <Route exact path="/cms/manage" component={PostsManager} />

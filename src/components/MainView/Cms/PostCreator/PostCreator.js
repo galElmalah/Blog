@@ -56,6 +56,7 @@ export class PostCreator extends Component {
 
   render() {
     const { loading } = this.props;
+    console.log(loading);
     const { title, tags, tag, value, error } = this.state;
     return (
       <>
