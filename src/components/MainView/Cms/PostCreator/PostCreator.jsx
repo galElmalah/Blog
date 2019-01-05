@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import * as s from './postCreator.scss';
 import { Button } from '../../../Button/Button';
 import { Input } from '../../../Input/Input';
-
 import RichTextEditor from 'react-rte';
 import { Spacer } from '../../../Spacer/Spacer';
-
+import { initialPostState } from './utils';
 export class PostCreator extends Component {
   constructor(props) {
     super(props);
+    const { postId } = props.match.params;
+
     this.state = {
-      title: '',
-      body: '',
-      value: RichTextEditor.createEmptyValue(),
-      tags: [],
-      tag: '',
+      ...initialPostState(postId, props.posts),
     };
   }
 
@@ -26,9 +23,14 @@ export class PostCreator extends Component {
   onInputChange = ({ target: { name, value } }) =>
     this.setState({ [name]: value });
 
+  shouldAddTag = ({ keyCode }) => {
+    const { tag, tags } = this.state;
+
+    return keyCode === 13 && tag && !tags.includes(tag);
+  };
   onEnterPress = e => {
     const { tag } = this.state;
-    if (e.keyCode === 13 && tag) {
+    if (this.shouldAddTag(e)) {
       this.setState(
         prevState => ({
           tags: [...prevState.tags, tag],
@@ -39,13 +41,20 @@ export class PostCreator extends Component {
   };
 
   onSubmit = () => {
-    const { title, body, tags } = this.state;
+    const { title, body, tags, id } = this.state;
     if (!(title && body && tags.length)) {
       this.setState({ error: 'Fields cannot be empty' });
       return;
     }
     this.setState({ error: '' });
-    this.props.createPost({ title, body, tags });
+    if (id) {
+      this.props.updatePost({
+        postId: id,
+        post: { title, body, tags },
+      });
+    } else {
+      this.props.createPost({ title, body, tags });
+    }
   };
 
   removeTag = tagToRemove => () => {
@@ -56,7 +65,6 @@ export class PostCreator extends Component {
 
   render() {
     const { loading } = this.props;
-    console.log(loading);
     const { title, tags, tag, value, error } = this.state;
     return (
       <>

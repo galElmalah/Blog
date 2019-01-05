@@ -34,8 +34,18 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:postId', (req, res) => {
-  res.send(postsGenerator(Math.random()));
+router.put('/:postId', async (req, res) => {
+  console.log('body::::', req.body);
+  try {
+    const updatedPost = await Posts.updatePostById({
+      postId: req.params.postId,
+      ...req.body,
+    });
+    
+    res.send(updatedPost.rows[0]);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.delete('/:postId', async (req, res) => {

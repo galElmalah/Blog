@@ -27,8 +27,8 @@ module.exports = class Posts {
   static createPost({ author, dateCreated, body, title, tags = [] }) {
     const query = {
       text: `INSERT INTO Posts(author, dateCreated, body, title, tags)  
-          VALUES($1, $2, $3, $4, $5)
-          RETURNING id, author, dateCreated, body, title, tags`,
+              VALUES($1, $2, $3, $4, $5)
+              RETURNING id, author, dateCreated, body, title, tags`,
       values: [author, dateCreated, body, title, tags],
     };
     return db.query(query);
@@ -41,9 +41,17 @@ module.exports = class Posts {
     };
     return db.query(query);
   }
-  static updatePostById({ postId }) {}
+  static updatePostById({ postId, body, title, tags }) {
+    const query = {
+      text: `UPDATE Posts
+              SET body = $2, title = $3, tags = $4
+              WHERE id = $1
+              RETURNING *;`,
+      values: [postId, body, title, tags],
+    };
+    return db.query(query);
+  }
   static deletePostById({ postId }) {
-    // DELETE FROM Posts where id = postId
     const query = {
       text: `DELETE FROM Posts WHERE id = $1;`,
       values: [postId],

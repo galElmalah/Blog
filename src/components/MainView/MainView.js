@@ -7,16 +7,12 @@ import Blog from '../../containers/Blog';
 import Login from '../../containers/Login';
 import PostView from '../../containers/Blog/PostView';
 import { Cms } from './Cms/Cms';
+
 const Check = ({ text, ...rest }) => {
   console.log(text, rest);
   return <h1 className={'page-title'}>{text}</h1>;
 };
 
-const Wrap = Component => (
-  <PageContainer>
-    <Component />
-  </PageContainer>
-);
 export const MainView = () => (
   <div className={'page'}>
     <Header />

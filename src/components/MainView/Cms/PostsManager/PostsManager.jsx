@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as s from './postsManager.scss';
-
+import { Link } from 'react-router-dom';
 export class PostsManager extends Component {
   componentDidMount() {
     if (this.props.posts.length === 0) {
@@ -36,7 +36,9 @@ const PostThumbnail = ({ title, status = 'published', id, onPostDelete }) => (
           Publish post
         </div>
         <div className={'action'}>unpublish post</div>
-        <div className={'action'}>edit post</div>
+        <div className={'action'}>
+          <Link to={`/cms/create-post/${id}`}>edit post</Link>
+        </div>
         <div className={'action'} onClick={() => onPostDelete(id)}>
           delete post
         </div>
