@@ -3,6 +3,8 @@ import {
   ADD_TAG_FILTER,
   REMOVE_TAG_FILTER,
   FETCH_POSTS,
+  CREATE_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
 } from '../../actions/actions';
 import { combineReducers } from 'redux';
 
@@ -23,10 +25,18 @@ function loadingPosts(state = initialState.loadingPosts, action) {
   }
 }
 
+const removePostById = (posts, { postId }) => {
+  return posts.filter(post => post.id != postId);
+};
+
 function posts(state = initialState.posts, action) {
   switch (action.type) {
     case SET_POSTS:
       return [...state, ...action.payload];
+    case CREATE_POST_SUCCESS:
+      return [...state, action.payload];
+    case DELETE_POST_SUCCESS:
+      return removePostById(state, action.payload);
     default:
       return state;
   }

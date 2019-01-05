@@ -12,7 +12,9 @@ $mainBlue: rgb(0, 153, 255);
   height: 80px;
   align-items: center;
   justify-content: space-between;
-
+  .title {
+    width: 50%;
+  }
   :nth-child(3) {
     margin-right: 30px;
   }
@@ -58,7 +60,7 @@ $mainBlue: rgb(0, 153, 255);
     position: absolute;
     top: -160px;
     width: auto;
-    background: rgb(192, 192, 192);
+    background: #d4d8dd;
     border: solid 1px rgb(167, 167, 167);
     border-radius: 8px;
     left: -110%;
@@ -72,7 +74,7 @@ $mainBlue: rgb(0, 153, 255);
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
 
-      border-top: 15px solid rgb(192, 192, 192);
+      border-top: 15px solid #d4d8dd;
     }
   }
 }

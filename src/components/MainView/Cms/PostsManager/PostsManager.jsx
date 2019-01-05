@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import * as s from './postsManager.scss';
 
 export class PostsManager extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
-    this.props.fetchPosts();
+    if (this.props.posts.length === 0) {
+      this.props.fetchPosts();
+    }
   }
 
   render() {
@@ -14,16 +13,20 @@ export class PostsManager extends Component {
 
     return (
       <>
-        <h1>Manage</h1>
+        <h1>Manage Posts</h1>
         {posts.map(post => (
-          <PostThumbnail {...post} />
+          <PostThumbnail
+            key={post.id}
+            {...post}
+            onPostDelete={this.props.deletePost}
+          />
         ))}
       </>
     );
   }
 }
 
-const PostThumbnail = ({ title, status = 'published' }) => (
+const PostThumbnail = ({ title, status = 'published', id, onPostDelete }) => (
   <div className="post-thumbnail">
     <span className="title">{title}</span>
     <StatusBanner status={status} />
@@ -34,7 +37,9 @@ const PostThumbnail = ({ title, status = 'published' }) => (
         </div>
         <div className={'action'}>unpublish post</div>
         <div className={'action'}>edit post</div>
-        <div className={'action'}>delete post</div>
+        <div className={'action'} onClick={() => onPostDelete(id)}>
+          delete post
+        </div>
       </div>
     </ActionMenu>
   </div>

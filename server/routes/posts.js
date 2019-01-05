@@ -27,8 +27,8 @@ router.post('/', async (req, res) => {
     tags,
   };
   try {
-    await Posts.createPost(post);
-    res.send(post);
+    const { rows } = await Posts.createPost(post);
+    res.send(rows[0]);
   } catch (err) {
     res.status(504).send(err);
   }
@@ -44,8 +44,7 @@ router.delete('/:postId', async (req, res) => {
     await Posts.deletePostById({ postId: req.params.postId });
     res.send({ postId: req.params.postId });
   } catch (e) {
-    console.error(e);
-    res.send('error');
+    res.status(504).send('error');
   }
 });
 

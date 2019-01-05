@@ -18,6 +18,7 @@ export class Cms extends Component {
         <PageContainer>
           <Route exact path="/cms/create-post" component={PostCreator} />
           <Route exact path="/cms/manage" component={PostsManager} />
+          <Route exact path="/cms" component={PostsManager} />
         </PageContainer>
       </div>
     );

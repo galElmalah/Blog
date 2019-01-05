@@ -5,8 +5,6 @@ import * as s from './cmsSideNavigation.scss';
 const navLinks = [
   { label: 'create posts', link: 'cms/create-post' },
   { label: 'manage posts', link: 'cms/manage' },
-  { label: 'manage posts 1', link: 'cms/manage' },
-  { label: 'manage posts 2', link: 'cms/manage' },
 ];
 
 export class CmsSideNavigation extends Component {
@@ -30,7 +28,7 @@ export class CmsSideNavigation extends Component {
           Menu
         </div>
         <h3> CMS </h3>
-        <Navigation currentlyActive={'create-post'}>
+        <Navigation currentlyActive={'manage posts'}>
           {({ isActive, onClickHandler }) =>
             navLinks.map(navLink => (
               <Link

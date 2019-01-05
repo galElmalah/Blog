@@ -28,7 +28,7 @@ module.exports = class Posts {
     const query = {
       text: `INSERT INTO Posts(author, dateCreated, body, title, tags)  
           VALUES($1, $2, $3, $4, $5)
-          RETURNING author, dateCreated, body, title, tags`,
+          RETURNING id, author, dateCreated, body, title, tags`,
       values: [author, dateCreated, body, title, tags],
     };
     return db.query(query);
