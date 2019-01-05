@@ -17,6 +17,6 @@ export class Navigation extends React.Component {
   };
 
   render() {
-    return <>{this.props.children(this.state)}</>;
+    return this.props.children(this.state);
   }
 }

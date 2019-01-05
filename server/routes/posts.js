@@ -18,16 +18,20 @@ router.get('/:postId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const body = 'some other awesome post';
-  const title = 'some other awesome post';
-  await Posts.createPost({
+  const { body, title, tags } = req.body;
+  const post = {
     body,
     title,
     author: 'Gal Elmalah',
     dateCreated: new Date(),
-    tags: ['es6', 'tdd', 'react'],
-  });
-  res.send(postsGenerator(Math.random()));
+    tags,
+  };
+  try {
+    await Posts.createPost(post);
+    res.send(post);
+  } catch (err) {
+    res.status(504).send(err);
+  }
 });
 
 router.put('/:postId', (req, res) => {

@@ -11,6 +11,12 @@ const Check = ({ text, ...rest }) => {
   console.log(text, rest);
   return <h1 className={'page-title'}>{text}</h1>;
 };
+
+const Wrap = Component => (
+  <PageContainer>
+    <Component />
+  </PageContainer>
+);
 export const MainView = () => (
   <div className={'page'}>
     <Header />
@@ -29,7 +35,6 @@ export const MainView = () => (
         <Route exact path="/blog" component={Blog} />
         <Route exact path={'/blog/:postId'} component={PostView} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/cms" component={Cms} />
         <Route
           exact
           path="/"
@@ -37,5 +42,6 @@ export const MainView = () => (
         />
       </Switch>
     </PageContainer>
+    <Route path="/cms" component={Cms} />
   </div>
 );

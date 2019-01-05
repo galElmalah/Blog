@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as s from './login.scss';
 import { Button } from '../../Button/Button';
 import { Loader } from '../../Loader/Loader';
+import { Input } from '../../Input/Input';
 export class Login extends Component {
   constructor(props) {
     super(props);
@@ -25,19 +26,19 @@ export class Login extends Component {
         <h1 className={'page-title'}>Login</h1>
 
         <div className={'form-wrapper'}>
-          <label htmlFor={'username'}>Username</label>
-          <input
+          <Input
             value={username}
             name={'username'}
             type={'text'}
             onChange={this.onChange}
+            title={'Username'}
           />
-          <label htmlFor={'password'}>Password</label>
-          <input
+          <Input
             value={password}
             name={'password'}
             type={'password'}
             onChange={this.onChange}
+            title={'Password'}
           />
           <div className={'login-btn'}>
             <Button onClick={this.onSubmit} theme={'dark'} loading={loading}>

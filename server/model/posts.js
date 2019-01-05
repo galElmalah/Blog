@@ -26,8 +26,9 @@ module.exports = class Posts {
 
   static createPost({ author, dateCreated, body, title, tags = [] }) {
     const query = {
-      text:
-        'INSERT INTO Posts(author, dateCreated, body, title, tags) VALUES($1, $2, $3, $4, $5)',
+      text: `INSERT INTO Posts(author, dateCreated, body, title, tags)  
+          VALUES($1, $2, $3, $4, $5)
+          RETURNING author, dateCreated, body, title, tags`,
       values: [author, dateCreated, body, title, tags],
     };
     return db.query(query);
