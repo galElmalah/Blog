@@ -4,6 +4,8 @@ import { Route } from 'react-router-dom';
 import PostCreator from '../../../containers/Cms/PostCreator';
 import { PageContainer } from '../../PageContainer/PageContainer';
 import { CmsSideNavigation } from './CmsSideNavigation/CmsSideNavigation';
+import PostsManager from '../../../containers/Cms/PostsManager';
+
 export class Cms extends Component {
   onRichTextEditorChange = value => {
     this.setState({ body: value });
@@ -15,7 +17,7 @@ export class Cms extends Component {
         <CmsSideNavigation />
         <PageContainer>
           <Route exact path="/cms/create-post" component={PostCreator} />
-          <Route exact path="/cms/manage" component={PostCreator} />
+          <Route exact path="/cms/manage" component={PostsManager} />
         </PageContainer>
       </div>
     );

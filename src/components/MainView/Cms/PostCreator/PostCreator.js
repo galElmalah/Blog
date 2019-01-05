@@ -40,6 +40,11 @@ export class PostCreator extends Component {
 
   onSubmit = () => {
     const { title, body, tags } = this.state;
+    if (!(title && body && tags.length)) {
+      this.setState({ error: 'Fields cannot be empty' });
+      return;
+    }
+    this.setState({ error: '' });
     this.props.createPost({ title, body, tags });
   };
 
@@ -51,9 +56,14 @@ export class PostCreator extends Component {
 
   render() {
     const { loading } = this.props;
-    const { title, body, tags, tag, value } = this.state;
+    const { title, tags, tag, value, error } = this.state;
     return (
       <>
+        {error && (
+          <section className={'error'}>
+            <p>{error}</p>
+          </section>
+        )}
         <Input
           value={title}
           name={'title'}
@@ -71,18 +81,7 @@ export class PostCreator extends Component {
           title={'Enter tag'}
         />
         <Spacer />
-        <section className={'tags-list'}>
-          {tags.map((tag, index) => (
-            <span
-              onClick={this.removeTag(tag)}
-              key={`${tag}-${index}`}
-              className={'tag'}
-            >
-              {tag}
-            </span>
-          ))}
-        </section>
-
+        <TagsList removeTag={this.removeTag} tags={tags} />
         <Spacer />
 
         <RichTextEditor
@@ -102,3 +101,13 @@ export class PostCreator extends Component {
     );
   }
 }
+
+const TagsList = ({ tags, removeTag }) => (
+  <section className={'tags-list'}>
+    {tags.map((tag, index) => (
+      <span onClick={removeTag(tag)} key={`${tag}-${index}`} className={'tag'}>
+        {tag}
+      </span>
+    ))}
+  </section>
+);
