@@ -6,6 +6,8 @@ import {
   DELETE_POST_SUCCESS,
   UPDATE_POST_SUCCESS,
   UPDATE_POST_REQUEST,
+  FETCH_POSTS,
+  SET_POSTS,
 } from '../../actions/actions';
 
 const onCreatePostSuccess = post => ({
@@ -52,5 +54,16 @@ export const updatePost = ({ postId, post }) => ({
     url: `/posts/${postId}`,
     onSuccess: onUpdatePostSuccess,
     label: UPDATE_POST_REQUEST,
+  },
+});
+
+const setPosts = posts => ({ type: SET_POSTS, payload: posts });
+
+export const fetchPosts = () => ({
+  type: API,
+  payload: {
+    url: '/posts',
+    onSuccess: setPosts,
+    label: FETCH_POSTS,
   },
 });

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { PostsManager } from '../../../components/MainView/Cms/PostsManager/PostsManager';
-import { createPost, deletePost } from '../../../store/actionCreators/posts';
-import { fetchPosts } from '../../../store/actionCreators';
+import { deletePost, fetchPosts } from '../../../store/actionCreators/posts';
+import {} from '../../../store/actionCreators';
 
 const mapStateToProps = state => ({
   posts: state.blog.posts,

@@ -1,4 +1,5 @@
 import {
+  NETWORK_FAILURE,
   SET_POSTS,
   ADD_TAG_FILTER,
   REMOVE_TAG_FILTER,
@@ -29,6 +30,7 @@ function loading(state = initialState.loading, action) {
     case CREATE_POST_SUCCESS:
     case DELETE_POST_SUCCESS:
     case UPDATE_POST_SUCCESS:
+    case NETWORK_FAILURE:
       return false;
     default:
       return false;

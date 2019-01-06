@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../store/actionCreators';
+import { fetchPosts } from '../../store/actionCreators/posts';
 import Blog from '../../components/MainView/Blog/Blog';
 
 const mapStateToProps = state => {

@@ -1,3 +1,5 @@
+export const NETWORK_FAILURE = 'NETWORK_FAILURE';
+
 export const SET_POSTS = 'SET_POSTS';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const ADD_TAG_FILTER = 'ADD_TAG_FILTER';

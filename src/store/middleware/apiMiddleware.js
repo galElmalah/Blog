@@ -1,5 +1,5 @@
 import API from '../requester';
-const defaultErrorAction = err => console.error(err);
+const defaultErrorAction = error => ({ type: 'NETWORK_FAILURE', error });
 /**
  * {
  *  url: 'sadsd',
@@ -28,6 +28,6 @@ export const apiMiddleware = ({
     console.log('response:: ', response);
     dispatch(onSuccess(response));
   } catch (err) {
-    onFailure ? onFailure(err) : defaultErrorAction(err);
+    onFailure ? dispatch(onFailure(err)) : dispatch(defaultErrorAction(err));
   }
 };
