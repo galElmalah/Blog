@@ -34,3 +34,9 @@ $mainColor: white;
     pointer-events: none;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .tag {
+    margin-bottom: 5px;
+  }
+}
