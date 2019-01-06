@@ -11,13 +11,12 @@ export class CmsSideNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false,
+      isVisible: true,
     };
   }
 
   render() {
     const { isVisible } = this.state;
-    console.log('this.props.activeAtFirst', this.props.activeAtFirst);
     return (
       <div className={`side-navigation ${isVisible ? '' : 'hide'}`}>
         <div
@@ -28,7 +27,6 @@ export class CmsSideNavigation extends Component {
         >
           Menu
         </div>
-        <h3> CMS </h3>
         <Navigation currentlyActive={this.props.activeAtFirst}>
           {({ isActive, onClickHandler }) =>
             navLinks.map(navLink => (

@@ -1,20 +1,11 @@
 $navigationColor: #130e1c;
 $mainBlue: rgb(0, 153, 255);
 .side-navigation {
-  position: relative;
-  text-align: left;
-  height: fit-content;
-  color: white;
-  width: 150px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background: $navigationColor;
-  transition: transform 300ms ease-in-out;
-  &.hide {
-    transform: translateX(-170px);
-  }
+  color: whitesmoke;
 
+  transition: transform 300ms ease-in-out;
   .controller {
     display: flex;
     justify-content: center;
@@ -23,32 +14,47 @@ $mainBlue: rgb(0, 153, 255);
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
-    position: absolute;
     width: 75px;
     height: 75px;
-    background: $mainBlue;
-    top: 0;
-    right: -75px;
+    background: $navigationColor;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    transition: top 500ms linear;
+    margin-bottom: 10px;
   }
   .nav-link {
-    padding: 5px;
-    border-radius: 4px;
+    &:nth-of-type(1) {
+      background: rgb(255, 92, 92);
+    }
+    &:nth-of-type(2) {
+      background: rgb(255, 174, 0);
+    }
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 75px;
+    height: 75px;
+    background: rgb(250, 53, 53);
     box-sizing: border-box;
     font-weight: bold;
     font-size: 1em;
-    color: whitesmoke;
     text-transform: capitalize;
     margin-bottom: 10px;
-    transition: background 150ms linear;
+    transition: background 150ms linear, opacity 200ms ease-in-out;
     &:hover {
       background: rgba($mainBlue, 0.7);
     }
-
     &.active {
       background: $mainBlue;
+    }
+  }
+
+  &.hide {
+    .nav-link {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 
