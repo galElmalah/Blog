@@ -28,26 +28,55 @@ $mainBlue: rgb(0, 153, 255);
     &:nth-of-type(2) {
       background: rgb(255, 174, 0);
     }
+    position: relative;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    width: 75px;
+    width: 93px;
+    padding-left: 24px;
     height: 75px;
+    left: -18px;
     background: rgb(250, 53, 53);
     box-sizing: border-box;
     font-weight: bold;
     font-size: 1em;
     text-transform: capitalize;
     margin-bottom: 10px;
-    transition: background 150ms linear, opacity 200ms ease-in-out;
+    transition: background 150ms linear, opacity 200ms ease-in-out,
+      transform 150ms;
     &:hover {
-      background: rgba($mainBlue, 0.7);
+      transform: translateX(4px);
     }
+
+    &::after {
+      content: '';
+      display: block;
+      background: transparent;
+      position: absolute;
+      top: calc(100% - 10px);
+      left: 0;
+      border-bottom-right-radius: 8px;
+      width: 75px;
+      height: 10px;
+      transition: background 150ms;
+    }
+
     &.active {
-      background: $mainBlue;
+      transform: translateX(18px);
+      &::after {
+        content: '';
+        display: block;
+        background: $mainBlue;
+        position: absolute;
+        top: calc(100% - 10px);
+        left: 0;
+        border-bottom-right-radius: 8px;
+        width: 93px;
+        height: 10px;
+      }
     }
   }
 
