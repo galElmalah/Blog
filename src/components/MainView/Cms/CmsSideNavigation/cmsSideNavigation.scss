@@ -24,8 +24,12 @@ $mainBlue: rgb(0, 153, 255);
   .nav-link {
     &:nth-of-type(1) {
       background: rgb(255, 92, 92);
+      transition: background 150ms linear, transform 150ms, opacity 150ms,
+        left 150ms;
     }
     &:nth-of-type(2) {
+      transition: background 150ms linear, transform 150ms,
+        left 150ms linear 150ms, opacity 150ms linear 150ms;
       background: rgb(255, 174, 0);
     }
     position: relative;
@@ -45,8 +49,6 @@ $mainBlue: rgb(0, 153, 255);
     font-size: 1em;
     text-transform: capitalize;
     margin-bottom: 10px;
-    transition: background 150ms linear, opacity 200ms ease-in-out,
-      transform 150ms;
     &:hover {
       transform: translateX(4px);
     }
@@ -82,6 +84,8 @@ $mainBlue: rgb(0, 153, 255);
 
   &.hide {
     .nav-link {
+      left: -118px;
+
       opacity: 0;
       pointer-events: none;
     }
