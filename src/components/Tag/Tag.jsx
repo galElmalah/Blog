@@ -1,10 +1,10 @@
-import * as React from "react";
-import * as s from "./tag.scss";
-import { connect } from "react-redux";
-import { addTagFilter, removeTagFilter } from "../../store/actionCreators";
+import * as React from 'react';
+import * as s from './tag.scss';
+import { connect } from 'react-redux';
+import { addTagFilter, removeTagFilter } from '../../store/actionCreators';
 const mapDispatchToProps = {
   addTagFilter,
-  removeTagFilter
+  removeTagFilter,
 };
 export const TagContainer = connect(
   null,
