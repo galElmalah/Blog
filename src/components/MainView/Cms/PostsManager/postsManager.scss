@@ -57,8 +57,11 @@ $mainBlue: rgb(0, 153, 255);
 .actions {
   position: relative;
   .actions-menu {
+    background: green;
     position: absolute;
-    top: -160px;
+    top: -375%;
+    left: 0;
+    position: absolute;
     width: auto;
     background: #d4d8dd;
     border: solid 1px rgb(167, 167, 167);
@@ -73,7 +76,6 @@ $mainBlue: rgb(0, 153, 255);
       height: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
-
       border-top: 15px solid #d4d8dd;
     }
   }

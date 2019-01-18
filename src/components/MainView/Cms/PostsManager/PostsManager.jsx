@@ -40,7 +40,7 @@ const PostThumbnail = ({ title, status = 'published', id, onPostDelete }) => (
           <Link to={`/cms/create-post/${id}`}>edit post</Link>
         </div>
         <div className={'action'} onClick={() => onPostDelete(id)}>
-          delete post
+          Delete post
         </div>
       </div>
     </ActionMenu>

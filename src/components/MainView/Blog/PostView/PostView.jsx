@@ -5,7 +5,6 @@ import { CommentsList } from './CommentsList/CommentsList';
 import { Spacer } from '../../../Spacer/Spacer';
 
 const PostView = ({ posts, match }) => {
-  console.log(posts, match.params.postId);
   const post = posts.find(post => post.id == match.params.postId) || {};
   
   return (
