@@ -24,12 +24,12 @@ module.exports = class Posts {
     return db.query(`SELECT * FROM Posts;`);
   }
 
-  static createPost({ author, dateCreated, body, title, tags = [] }) {
+  static createPost({ author, body, title, tags = [] }) {
     const query = {
-      text: `INSERT INTO Posts(author, dateCreated, body, title, tags)  
-              VALUES($1, $2, $3, $4, $5)
-              RETURNING id, author, dateCreated, body, title, tags`,
-      values: [author, dateCreated, body, title, tags],
+      text: `INSERT INTO Posts(author, body, title, tags)  
+              VALUES($1, $2, $3, $4)
+              RETURNING id, author, body, title, tags`,
+      values: [author, body, title, tags],
     };
     return db.query(query);
   }

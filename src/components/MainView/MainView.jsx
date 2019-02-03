@@ -5,6 +5,7 @@ import { PageContainer } from '../PageContainer/PageContainer';
 import * as a from './mainView.scss';
 import Blog from '../../containers/Blog';
 import Login from '../../containers/Login';
+import Register from '../../containers/Register';
 import PostView from '../../containers/Blog/PostView';
 import { Cms } from './Cms/Cms';
 
@@ -20,21 +21,17 @@ export const MainView = () => (
       <Switch>
         <Route
           exact
-          path="/home"
-          render={props => <Check {...props} text={'home'} />}
-        />
-        <Route
-          exact
           path="/about"
           render={props => <Check {...props} text={'about'} />}
         />
         <Route exact path="/blog" component={Blog} />
         <Route exact path={'/blog/:postId'} component={PostView} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route
           exact
           path="/"
-          render={props => <Check {...props} text={'home'} />}
+          render={props => <Check {...props} text={'about me'} />}
         />
       </Switch>
     </PageContainer>

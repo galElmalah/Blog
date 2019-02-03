@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import * as s from './login.scss';
+import * as s from './register.scss';
 import { Button } from '../../Button/Button';
 import { Input } from '../../Input/Input';
-export class Login extends Component {
+
+export class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
+      email: '',
     };
   }
 
@@ -19,12 +21,19 @@ export class Login extends Component {
 
   render() {
     const { loading } = this.props;
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     return (
       <div className={'login-page'}>
-        <h1 className={'page-title'}>Login</h1>
+        <h1 className={'page-title'}>Register</h1>
 
         <div className={'form-wrapper'}>
+          <Input
+            value={email}
+            name={'email'}
+            type={'email'}
+            onChange={this.onChange}
+            title={'Email'}
+          />
           <Input
             value={username}
             name={'username'}
@@ -41,7 +50,7 @@ export class Login extends Component {
           />
           <div className={'login-btn'}>
             <Button onClick={this.onSubmit} theme={'dark'} loading={loading}>
-              login
+              Sign-up
             </Button>
           </div>
         </div>

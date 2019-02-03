@@ -1,0 +1,32 @@
+.login-page {
+  text-align: center;
+}
+
+.form-wrapper {
+  margin: 100px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  > * {
+    margin-bottom: 20px;
+  }
+  .login-btn {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .form-wrapper {
+    width: 100%;
+
+    .login-btn {
+      width: 100%;
+      > button {
+        width: 100%;
+      }
+    }
+  }
+}

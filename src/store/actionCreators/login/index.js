@@ -15,3 +15,14 @@ export const loginUser = credentials => ({
     label: LOGIN_REQUEST,
   },
 });
+
+export const registerUser = credentials => ({
+  type: API,
+  payload: {
+    data: credentials,
+    method: 'POST',
+    url: '/register',
+    onSuccess: setUser,
+    label: LOGIN_REQUEST,
+  },
+});

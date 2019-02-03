@@ -8,9 +8,8 @@ import { withRouter } from 'react-router';
 const getMainNavigationActivePath = path => path.split('/')[1];
 
 const navLinks = [
-  { label: 'home', link: 'home' },
-  { label: 'about me', link: 'about' },
   { label: 'blog', link: 'blog' },
+  { label: 'about me', link: 'about' },
 ];
 const Header = ({ location }) => (
   <header className={'header'}>

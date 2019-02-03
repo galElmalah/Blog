@@ -23,25 +23,24 @@ router.post('/', async (req, res) => {
     body,
     title,
     author: 'Gal Elmalah',
-    dateCreated: new Date(),
     tags,
   };
   try {
     const { rows } = await Posts.createPost(post);
     res.send(rows[0]);
   } catch (err) {
+    console.log(err);
     res.status(504).send(err);
   }
 });
 
 router.put('/:postId', async (req, res) => {
-  console.log('body::::', req.body);
   try {
     const updatedPost = await Posts.updatePostById({
       postId: req.params.postId,
       ...req.body,
     });
-    
+
     res.send(updatedPost.rows[0]);
   } catch (err) {
     console.log(err);

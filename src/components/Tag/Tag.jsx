@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as s from './tag.scss';
 import { connect } from 'react-redux';
 import { addTagFilter, removeTagFilter } from '../../store/actionCreators';
