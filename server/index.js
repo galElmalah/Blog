@@ -4,6 +4,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const { connect } = require('./model');
 const postsRoutes = require('./routes/posts');
+const commentsRoutes = require('./routes/comments');
 const userRoutes = require('./routes/user');
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 app.use('/', userRoutes);
 app.use('/posts', postsRoutes);
+app.use('/comments', commentsRoutes);
 
 const port = process.env.PORT || 3001;
 

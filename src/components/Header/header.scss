@@ -9,6 +9,7 @@ $mainColor: #eef2f6;
 }
 
 .header {
+  height: 50px;
   width: 100vw;
   background: $navigationColor;
   .container {
@@ -24,7 +25,7 @@ a {
   text-decoration: inherit; /* no underline */
 }
 .tab {
-  padding-bottom: 10px;
+  padding-bottom: 18px;
   text-transform: capitalize;
   width: 90px;
   font-weight: bold;

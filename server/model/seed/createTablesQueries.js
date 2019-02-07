@@ -18,7 +18,7 @@ module.exports.posts = `
     createdAt TIMESTAMP DEFAULT CURRENT_DATE
     );
 `;
-
+        
 module.exports.comments = `
     CREATE TABLE Comments (
         id SERIAL PRIMARY KEY,

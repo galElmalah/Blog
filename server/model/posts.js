@@ -1,26 +1,7 @@
 const { db } = require('./index');
 
-const postsTable = async () => {
-  try {
-    await db.query(`
-    CREATE TABLE IF NOT EXISTS Posts (
-    id SERIAL PRIMARY KEY,
-    body TEXT,
-    title VARCHAR(80),
-    author VARCHAR(80),
-    tags VARCHAR(20)[],
-    dateCreated TIMESTAMP
-  );`);
-    console.log('Posts table created');
-  } catch (err) {
-    console.log(err);
-  }
-};
 module.exports = class Posts {
   static async getAll() {
-    // SELECT * FROM posts;
-    // await db.query(`DROP TABLE Posts`);
-    // await postsTable();
     return db.query(`SELECT * FROM Posts;`);
   }
 

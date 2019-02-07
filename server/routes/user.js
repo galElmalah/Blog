@@ -20,7 +20,7 @@ router.post('/register', async (req, res, next) => {
     });
     return res.send(user);
   }
-  return res.send('usernme already exists');
+  return res.status(500).send('username already exists');
 });
 
 module.exports = router;

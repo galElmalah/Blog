@@ -3,9 +3,9 @@ const tableQueries = require('./createTablesQueries');
 
 const dropAllTables = `
 BEGIN;
+DROP TABLE IF EXISTS Comments;
 DROP TABLE IF EXISTS Posts;
 DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Comments;
 COMMIT;
 `;
 

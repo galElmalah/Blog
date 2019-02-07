@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const postsGenerator = require('../data').posts;
 const Posts = require('../model/posts');
 // define the home page route
 router.get('/', async (req, res) => {

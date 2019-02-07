@@ -1,21 +1,6 @@
 const { db } = require('./index');
 const Password = require('../services/security');
 
-const userTable = async () => {
-  try {
-    await db.query(`
-    CREATE TABLE IF NOT EXISTS Users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(80),
-    password TEXT,
-    createdAt TIMESTAMP,
-    UNIQUE (username)
-  );`);
-    console.log('Users table created');
-  } catch (err) {
-    console.log(err);
-  }
-};
 module.exports = class Users {
   static async isUserNameExists(username) {
     const query = {
@@ -24,6 +9,7 @@ module.exports = class Users {
       values: [username],
     };
     const result = await db.query(query);
+    console.log(result, username);
     return result.rowCount !== 0;
   }
 
