@@ -7,19 +7,35 @@ router.get('/:postId', async (req, res) => {
   const { rows: specificPostComments } = await Comment.getPostComments({
     postId,
   });
-  console.log(specificPostComments);
+
   res.send(specificPostComments);
 });
 
 router.post('/', async (req, res) => {
   const { postId, userId, body } = req.body;
-  console.log(postId, userId, body);
+
   const { rows: response } = await Comment.createComment({
     postId,
     userId,
     body,
   });
-  console.log(response);
+
+  res.send(response);
+});
+
+router.post('/:commentId/upvote', async (req, res) => {
+  const { rows: response } = await Comment.upvoteComment({
+    commentId: req.params.commentId,
+  });
+
+  res.send(response);
+});
+
+router.post('/:commentId/downvote', async (req, res) => {
+  const { rows: response } = await Comment.downvoteComment({
+    commentId: req.params.commentId,
+  });
+
   res.send(response);
 });
 
