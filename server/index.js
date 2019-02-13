@@ -2,11 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('morgan');
+const app = express();
+const helmet = require('helmet');
 const { connect } = require('./model');
 const postsRoutes = require('./routes/posts');
 const commentsRoutes = require('./routes/comments');
 const userRoutes = require('./routes/user');
-const app = express();
+
+app.use(helmet());
 
 app.use(cors());
 app.use(logger('dev'));

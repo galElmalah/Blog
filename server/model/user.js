@@ -1,6 +1,6 @@
 const { db } = require('./index');
 const Password = require('../services/security');
-
+const { someEmpty } = require('../utils');
 module.exports = class Users {
   static async isUserNameExists(username) {
     const query = {
@@ -24,14 +24,18 @@ module.exports = class Users {
     return user;
   }
 
-  // should be a pat of a middleware or a route definitly not in the db class
+  // should be a part of a middleware or a route definitly not in the db class
   static async validateCredentials({ username, password }) {
-    if (!username || !password) {
+    if (someEmpty(username, password)) {
       return false;
     }
     const query = {
-      text: `SELECT username, password from Users
-              WHERE username = $1;`,
+      text: `SELECT 
+                username, password 
+             FROM 
+                Users
+             WHERE 
+                username = $1;`,
       values: [username],
     };
     const {
