@@ -25,8 +25,10 @@ router.post('/', async (req, res) => {
     tags,
   };
   try {
-    const { rows } = await Posts.createPost(post);
-    res.send(rows[0]);
+    const {
+      rows: [newPost],
+    } = await Posts.createPost(post);
+    res.send(newPost);
   } catch (err) {
     console.log(err);
     res.status(504).send(err);

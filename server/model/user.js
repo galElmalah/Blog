@@ -9,7 +9,6 @@ module.exports = class Users {
       values: [username],
     };
     const result = await db.query(query);
-    console.log(result, username);
     return result.rowCount !== 0;
   }
 
@@ -25,13 +24,22 @@ module.exports = class Users {
     return user;
   }
 
+  // should be a pat of a middleware or a route definitly not in the db class
   static async validateCredentials({ username, password }) {
+    if (!username || !password) {
+      return false;
+    }
     const query = {
       text: `SELECT username, password from Users
               WHERE username = $1;`,
       values: [username],
     };
-    const user = await db.query(query);
-    Password.compare({ password, compareTo: user.password });
+    const {
+      rows: [user],
+    } = await db.query(query);
+    if (!user) {
+      return false;
+    }
+    return Password.compare({ password, compareTo: user.password });
   }
 };
