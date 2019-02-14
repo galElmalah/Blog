@@ -2,43 +2,62 @@ const express = require('express');
 const router = express.Router();
 const Users = require('../model/user');
 const Password = require('../services/security');
-const { someEmpty, errorResponse } = require('../utils');
+const {
+  someEmpty,
+  errorResponse,
+  emptyFieldsError,
+  unauthorizeError,
+} = require('../utils');
+const Auth = require('../services/Auth');
+const authenticate = require('../middlewares/auth');
+
+const signTokenAndRespond = (res, payload) => {
+  const token = Auth.signToken(payload);
+  return res.send({ username: payload.username, token: `${token}` });
+};
+
+router.get('/', authenticate, (req, res) => {
+  res.send('yeah');
+});
+
 router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   if (someEmpty(username, password)) {
-    errorResponse(res, {
-      message: 'None of the fields cant be empty.',
-      status: 400,
-    });
-    console.log('empty fields', username, password);
+    emptyFieldsError(res);
   }
   const isValidCredentials = await Users.validateCredentials({
     username,
     password,
   });
   if (isValidCredentials) {
-    return res.send({ username, token: `${Math.random()} token` });
+    return signTokenAndRespond(res, { username, password });
   }
-  errorResponse(res, {
-    message: 'Not authorize',
-    status: 403,
-  });
+  unauthorizeError(res);
 });
 
 router.post('/register', async (req, res, next) => {
   const { username, password } = req.body;
   if (someEmpty(username, password)) {
-    console.log('empty fields', username, password);
+    return emptyFieldsError(res);
   }
-  if (!(await Users.isUserNameExists(username))) {
-    const hashedPassword = await Password.hash(password);
-    const user = await Users.createUser({
-      username,
-      password: hashedPassword,
-    });
-    return res.send(user);
+
+  try {
+    if (!(await Users.isUserNameExists(username))) {
+      const hashedPassword = await Password.hash(password);
+      await Users.createUser({
+        username,
+        password: hashedPassword,
+      });
+      return signTokenAndRespond(res, { username, password });
+    }
+  } catch (err) {
+    console.error(err);
   }
-  return res.status(500).send('username already exists');
+
+  return errorResponse(res, {
+    status: 500,
+    message: 'username already exists',
+  });
 });
 
 module.exports = router;

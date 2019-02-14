@@ -26,9 +26,6 @@ module.exports = class Users {
 
   // should be a part of a middleware or a route definitly not in the db class
   static async validateCredentials({ username, password }) {
-    if (someEmpty(username, password)) {
-      return false;
-    }
     const query = {
       text: `SELECT 
                 username, password 
