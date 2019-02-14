@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Posts = require('../model/posts');
+const authenticate = require('../middlewares/auth');
 // define the home page route
 router.get('/', async (req, res) => {
   const posts = await Posts.getAll();

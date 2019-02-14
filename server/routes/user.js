@@ -22,8 +22,9 @@ router.get('/', authenticate, (req, res) => {
 
 router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
+
   if (someEmpty(username, password)) {
-    emptyFieldsError(res);
+    return emptyFieldsError(res);
   }
   const isValidCredentials = await Users.validateCredentials({
     username,
@@ -32,7 +33,7 @@ router.post('/login', async (req, res, next) => {
   if (isValidCredentials) {
     return signTokenAndRespond(res, { username, password });
   }
-  unauthorizeError(res);
+  return unauthorizeError(res);
 });
 
 router.post('/register', async (req, res, next) => {
