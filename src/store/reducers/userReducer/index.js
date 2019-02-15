@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 
 const initialState = {
   currentlyLoggedInUser: '',
-  isAuthenticated: false,
+  isLoggedIn: false,
   loading: false,
   token: '',
 };
@@ -32,7 +32,7 @@ function currentlyLoggedInUser(
   }
 }
 
-function isAuthenticated(state = initialState.isAuthenticated, action) {
+function isLoggedIn(state = initialState.isLoggedIn, action) {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
       return true;
@@ -59,6 +59,6 @@ function loading(state = initialState.loading, action) {
 export default combineReducers({
   loading,
   currentlyLoggedInUser,
-  isAuthenticated,
+  isLoggedIn,
   token,
 });

@@ -6,9 +6,10 @@ const extractToken = req => {
   const striped = token.replace('Bearer', '').trim();
   return striped || null;
 };
+
 module.exports = (req, res, next) => {
   const token = extractToken(req);
-  console.log(token);
+
   if (!token) {
     return unauthorizeError(res);
   }

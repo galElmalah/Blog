@@ -13,9 +13,8 @@ const defaultErrorAction = (error, label) => ({
  * }
  *
  */
-const generateHeaders = state => ({
-  Authorization: `Bearer ${state.user.token}`,
-});
+const generateHeaders = ({ user: { token } }) =>
+  token ? { Authorization: `Bearer ${token}` } : {};
 
 export const apiMiddleware = ({
   getState,
@@ -38,7 +37,6 @@ export const apiMiddleware = ({
 
   dispatch({ type: label });
   try {
-    // should be replaced with axios once the server is in place
     const { data: response } = await API.request({
       url,
       method,
@@ -47,11 +45,11 @@ export const apiMiddleware = ({
     });
 
     console.group('Request middleware paramaters');
-    console.log('url:: ', url);
-    console.log('method:: ', method);
-    console.log('data:: ', data);
-    console.log('headers:: ', headers);
-    console.log('response:: ', response);
+    console.log('%curl\n ', 'color: green; font-weight: bold;', url);
+    console.log('%cmethod\n ', 'color: green; font-weight: bold;', method);
+    console.log('%cdata\n ', 'color: green; font-weight: bold;', data);
+    console.log('%cheaders\n ', 'color: green; font-weight: bold;', headers);
+    console.log('%cresponse\n ', 'color: green; font-weight: bold;', response);
     console.groupEnd();
 
     dispatch(onSuccess(response));

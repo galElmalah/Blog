@@ -11,9 +11,11 @@ export const Button = ({
   disabled,
   theme,
   loading,
+  type,
 }) => {
   return (
     <button
+      type={type}
       className={
         'button' +
         (disabled || loading ? ' disabled ' : '') +

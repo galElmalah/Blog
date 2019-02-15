@@ -17,22 +17,7 @@ export default class Blog extends React.Component {
     return (
       <>
         <h1 className={'page-title'}>Blog</h1>
-        <div className={'activeTags'}>
-          <TagContainer>
-            {({ removeTagFilter }) => {
-              return activeTags.map(tag => (
-                <span
-                  key={tag}
-                  onClick={() => removeTagFilter(tag)}
-                  className="tag"
-                >
-                  <small className={'tagDelete'}>x</small>
-                  {tag}
-                </span>
-              ));
-            }}
-          </TagContainer>
-        </div>
+        <ActiveTagsList activeTags={activeTags} />
         <section className={'posts-container'}>
           <PostsList posts={posts} isLoading={loading} />
         </section>
@@ -70,5 +55,26 @@ const PostsList = ({ posts, isLoading }) => {
       ))}
       {isLoading && loadingState()}
     </>
+  );
+};
+
+const ActiveTagsList = ({ activeTags }) => {
+  return (
+    <div className={'activeTags'}>
+      <TagContainer>
+        {({ removeTagFilter }) => {
+          return activeTags.map(tag => (
+            <span
+              key={tag}
+              onClick={() => removeTagFilter(tag)}
+              className="tag"
+            >
+              <small className={'tagDelete'}>x</small>
+              {tag}
+            </span>
+          ));
+        }}
+      </TagContainer>
+    </div>
   );
 };

@@ -8,6 +8,7 @@ import Login from '../../containers/Login';
 import Register from '../../containers/Register';
 import PostView from '../../containers/Blog/PostView';
 import { Cms } from './Cms/Cms';
+import SecureRoute from '../../containers/SecureRoute';
 
 const Check = ({ text, ...rest }) => {
   console.log(text, rest);
@@ -35,6 +36,6 @@ export const MainView = () => (
         />
       </Switch>
     </PageContainer>
-    <Route path="/cms" component={Cms} />
+    <SecureRoute path="/cms" component={Cms} />
   </div>
 );

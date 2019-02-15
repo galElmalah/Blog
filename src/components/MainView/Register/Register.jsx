@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as s from './register.scss';
 import { Button } from '../../Button/Button';
 import { Input } from '../../Input/Input';
+import { someEmpty, errorMessages } from './utils';
 
 export class Register extends Component {
   constructor(props) {
@@ -10,13 +11,32 @@ export class Register extends Component {
       username: '',
       password: '',
       email: '',
+      errors: {},
     };
   }
 
   onChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
+  setEmptyFields = () => {
+    Object.entries(this.state).forEach(([key, value]) => {
+      if (!value) {
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, [key]: errorMessages(key) },
+        }));
+      }
+    });
+  };
+
   onSubmit = () => {
-    this.props.loginUser(this.state);
+    if (someEmpty(Object.values(this.state))) {
+      this.setEmptyFields();
+      return;
+    }
+    this.props.registerUser(this.state);
+  };
+
+  checkForErrors = fieldName => {
+    return this.state.errors[fieldName];
   };
 
   render() {
@@ -28,6 +48,7 @@ export class Register extends Component {
 
         <div className={'form-wrapper'}>
           <Input
+            error={this.checkForErrors('email')}
             value={email}
             name={'email'}
             type={'email'}
@@ -35,6 +56,7 @@ export class Register extends Component {
             title={'Email'}
           />
           <Input
+            error={this.checkForErrors('username')}
             value={username}
             name={'username'}
             type={'text'}
@@ -42,6 +64,7 @@ export class Register extends Component {
             title={'Username'}
           />
           <Input
+            error={this.checkForErrors('password')}
             value={password}
             name={'password'}
             type={'password'}
@@ -50,7 +73,7 @@ export class Register extends Component {
           />
           <div className={'login-btn'}>
             <Button onClick={this.onSubmit} theme={'dark'} loading={loading}>
-              Sign-up
+              Sign up
             </Button>
           </div>
         </div>

@@ -4,7 +4,7 @@ export class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: props.currentlyActive || 'blog',
+      activeTab: props.currentlyActive || 'about',
       isActive: this.isActive,
       onClickHandler: this.onClickHandler,
     };
