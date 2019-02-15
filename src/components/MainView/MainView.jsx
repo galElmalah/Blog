@@ -11,7 +11,6 @@ import { Cms } from './Cms/Cms';
 import SecureRoute from '../../containers/SecureRoute';
 
 const Check = ({ text, ...rest }) => {
-  console.log(text, rest);
   return <h1 className={'page-title'}>{text}</h1>;
 };
 

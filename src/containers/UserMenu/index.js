@@ -3,7 +3,7 @@ import { UserMenu } from '../../components/Header/UserMenu/UserMenu';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = state => ({
-  token: state.user.isAdmin,
+  isAdmin: state.user.isAdmin,
   currentlyLoggedInUser: state.user.currentlyLoggedInUser,
 });
 

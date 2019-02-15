@@ -37,21 +37,22 @@ export class Login extends Component {
   };
 
   onSubmit = () => {
+    const { loginUser } = this.props;
     if (someEmpty(Object.values(this.state))) {
       this.setEmptyFields();
       return;
     }
-    this.props.loginUser(this.state);
+    loginUser(this.state);
   };
 
   checkForErrors = fieldName => {
     return this.state.errors[fieldName];
   };
 
+  onKeyPressHandler = ({ key }) => key === 'Enter' && this.onSubmit();
   render() {
     const { loading, isLoggedIn, currentlyLoggedInUser } = this.props;
     const { username, password } = this.state;
-    console.log({ isLoggedIn, currentlyLoggedInUser });
     if (isLoggedIn) {
       return <AlreadyLoggedInMessage username={currentlyLoggedInUser} />;
     }
@@ -60,7 +61,7 @@ export class Login extends Component {
       <div className={'login-page'}>
         <h1 className={'page-title'}>Login</h1>
 
-        <div className={'form-wrapper'}>
+        <div className={'form-wrapper'} onKeyUp={this.onKeyPressHandler}>
           <Input
             error={this.checkForErrors('username')}
             value={username}

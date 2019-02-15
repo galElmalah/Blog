@@ -1,5 +1,4 @@
 import React from 'react';
-
 import * as s from './userMenu.scss';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +27,10 @@ export const UserMenu = ({ currentlyLoggedInUser, isAdmin }) => {
   return (
     <div className={'user-menu'}>
       {currentlyLoggedInUser ? (
-        <UserDisplay username={currentlyLoggedInUser} />
+        <>
+          <UserDisplay username={currentlyLoggedInUser} />
+          <button className={'log-out-btn'}>{'LOG OUT'}</button>
+        </>
       ) : (
         <NotLoggedInMenuDisplay />
       )}

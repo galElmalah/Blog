@@ -10,6 +10,7 @@ const initialState = {
   isLoggedIn: false,
   loading: false,
   token: '',
+  isAdmin: false,
 };
 
 function token(state = initialState.token, action) {
@@ -43,6 +44,15 @@ function isLoggedIn(state = initialState.isLoggedIn, action) {
   }
 }
 
+function isAdmin(state = initialState.isAdmin, action) {
+  switch (action.type) {
+    case USER_LOGIN_SUCCESS:
+      return action.payload.isAdmin;
+    default:
+      return state;
+  }
+}
+
 function loading(state = initialState.loading, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
@@ -61,4 +71,5 @@ export default combineReducers({
   currentlyLoggedInUser,
   isLoggedIn,
   token,
+  isAdmin,
 });

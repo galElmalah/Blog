@@ -56,6 +56,8 @@ $mainBlue: rgb(0, 153, 255);
 }
 .actions {
   position: relative;
+  outline: none;
+
   .actions-menu {
     background: green;
     position: absolute;

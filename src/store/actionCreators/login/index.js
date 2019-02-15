@@ -1,8 +1,8 @@
 import { API, USER_LOGIN_SUCCESS, LOGIN_REQUEST } from '../../actions/actions';
 
-const setUser = ({ username, token = '' }) => ({
+const setUser = ({ username, isAdmin, token = '' }) => ({
   type: USER_LOGIN_SUCCESS,
-  payload: { username, token },
+  payload: { username, token, isAdmin },
 });
 
 export const loginUser = credentials => ({

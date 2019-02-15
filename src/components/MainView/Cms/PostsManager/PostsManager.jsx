@@ -67,6 +67,10 @@ class ActionMenu extends Component {
     this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   };
 
+  closeMenu = () => {
+    this.setState({ isVisible: false });
+  };
+
   render() {
     const { isVisible } = this.state;
     return (

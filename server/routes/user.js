@@ -13,7 +13,11 @@ const authenticate = require('../middlewares/auth');
 
 const signTokenAndRespond = (res, payload) => {
   const token = Auth.signToken(payload);
-  return res.send({ username: payload.username, token: `${token}` });
+  return res.send({
+    username: payload.username,
+    isAdmin: true,
+    token: `${token}`,
+  });
 };
 
 router.get('/', authenticate, (req, res) => {

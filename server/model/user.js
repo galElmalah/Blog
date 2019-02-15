@@ -12,12 +12,12 @@ module.exports = class Users {
     return result.rowCount !== 0;
   }
 
-  static async createUser({ username, password }) {
+  static async createUser({ username, password, isAdmin }) {
     const query = {
-      text: `INSERT INTO Users(username, password)
-                VALUES($1, $2)
+      text: `INSERT INTO Users(username, password, isAdmin)
+                VALUES($1, $2, $3)
                 RETURNING id`,
-      values: [username, password],
+      values: [username, password, isAdmin],
     };
     const user = await db.query(query);
 
@@ -28,7 +28,7 @@ module.exports = class Users {
   static async validateCredentials({ username, password }) {
     const query = {
       text: `SELECT 
-                username, password 
+                username, password
              FROM 
                 Users
              WHERE 
