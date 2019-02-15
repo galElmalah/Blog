@@ -4,6 +4,7 @@ import { Logo } from './Logo/Logo';
 import { Navigation } from './Navigation';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import UserMenu from '../../containers/UserMenu';
 
 const getMainNavigationActivePath = path => path.split('/')[1];
 
@@ -13,29 +14,32 @@ const navLinks = [
 ];
 
 const Header = ({ location }) => (
-  <header className={'header'}>
-    <div className="container">
-      <Logo />
-      <div className={'tabs-navigation'}>
-        <Navigation
-          currentlyActive={getMainNavigationActivePath(location.pathname)}
-        >
-          {({ isActive, onClickHandler }) =>
-            navLinks.map(({ link, label }) => (
-              <Link
-                key={label}
-                to={`/${link}`}
-                className={(isActive(link) ? 'active' : '') + ' tab'}
-                onClick={() => onClickHandler(link)}
-              >
-                {label}
-              </Link>
-            ))
-          }
-        </Navigation>
+  <>
+    <UserMenu />
+    <header className={'header'}>
+      <div className="container">
+        <Logo />
+        <div className={'tabs-navigation'}>
+          <Navigation
+            currentlyActive={getMainNavigationActivePath(location.pathname)}
+          >
+            {({ isActive, onClickHandler }) =>
+              navLinks.map(({ link, label }) => (
+                <Link
+                  key={label}
+                  to={`/${link}`}
+                  className={(isActive(link) ? 'active' : '') + ' tab'}
+                  onClick={() => onClickHandler(link)}
+                >
+                  {label}
+                </Link>
+              ))
+            }
+          </Navigation>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </>
 );
 
 export default withRouter(Header);

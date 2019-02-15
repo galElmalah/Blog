@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.loggedin-message {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-wrapper {
   margin: 100px auto;
   display: flex;

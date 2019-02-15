@@ -3,6 +3,7 @@ module.exports.user = `
     id SERIAL PRIMARY KEY,
     username VARCHAR(80),
     password TEXT,
+    isAdmin BOOLEAN DEFAULT false,
     createdAt TIMESTAMP DEFAULT CURRENT_DATE,
     UNIQUE (username)
   );

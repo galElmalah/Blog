@@ -4,11 +4,12 @@ $mainColor: #eef2f6;
 
 .tabs-navigation {
   display: flex;
-  padding-top: 10px;
   box-sizing: border-box;
 }
 
 .header {
+  padding-top: 10px;
+  box-sizing: border-box;
   height: 50px;
   width: 100vw;
   background: $navigationColor;
@@ -24,6 +25,8 @@ a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
+
+
 .tab {
   padding-bottom: 18px;
   text-transform: capitalize;

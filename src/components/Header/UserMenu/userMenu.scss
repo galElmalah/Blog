@@ -1,0 +1,13 @@
+.user-menu {
+  padding: 10px;
+  background: rgb(50, 42, 63);
+  &-link {
+    margin-right: 15px;
+    color: white;
+  }
+  .username {
+    color: white;
+    margin: 0;
+    font-weight: 500;
+  }
+}

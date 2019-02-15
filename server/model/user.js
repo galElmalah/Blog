@@ -1,6 +1,5 @@
 const { db } = require('./index');
 const Password = require('../services/security');
-const authenticate = require('../middlewares/auth');
 
 module.exports = class Users {
   static async isUserNameExists(username) {
