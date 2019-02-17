@@ -2,6 +2,17 @@ const { db } = require('./index');
 const Password = require('../services/security');
 
 module.exports = class Users {
+  static async getUser({ username }) {
+    const query = {
+      text: `SELECT * FROM Users
+              WHERE username = $1`,
+      values: [username],
+    };
+    const {
+      rows: [user],
+    } = await db.query(query);
+    return user;
+  }
   static async isUserNameExists(username) {
     const query = {
       text: `SELECT * FROM Users
@@ -13,11 +24,12 @@ module.exports = class Users {
   }
 
   static async createUser({ username, password, isAdmin }) {
+    console.log({ isAdmin });
     const query = {
       text: `INSERT INTO Users(username, password, isAdmin)
                 VALUES($1, $2, $3)
                 RETURNING id`,
-      values: [username, password, isAdmin],
+      values: [username, password, true],
     };
     const user = await db.query(query);
 

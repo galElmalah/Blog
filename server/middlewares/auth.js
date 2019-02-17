@@ -13,8 +13,11 @@ module.exports = (req, res, next) => {
   if (!token) {
     return unauthorizeError(res);
   }
-  const verified = Auth.verify(token, 'secret');
-  req.decoded = verified;
-
-  next();
+  try {
+    const verified = Auth.verify(token, 'secret');
+    req.decoded = verified;
+    next();
+  } catch (err) {
+    return unauthorizeError(res);
+  }
 };
