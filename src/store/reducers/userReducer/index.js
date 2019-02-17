@@ -47,7 +47,7 @@ function isLoggedIn(state = initialState.isLoggedIn, action) {
 function isAdmin(state = initialState.isAdmin, action) {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
-      return action.payload.isAdmin;
+      return action.payload.isAdmin || false;
     default:
       return state;
   }

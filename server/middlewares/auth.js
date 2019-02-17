@@ -15,7 +15,8 @@ module.exports = (req, res, next) => {
   }
   try {
     const verified = Auth.verify(token, 'secret');
-    req.decoded = verified;
+    req.user = verified;
+    console.log('asdasasd::::', req.user);
     next();
   } catch (err) {
     return unauthorizeError(res);

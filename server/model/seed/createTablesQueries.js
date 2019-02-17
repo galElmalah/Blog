@@ -1,22 +1,23 @@
 module.exports.user = `
     CREATE TABLE Users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(80),
-    password TEXT,
-    isAdmin BOOLEAN NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_DATE,
-    UNIQUE (username)
-  );
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(80),
+        email VARCHAR(80),
+        password TEXT,
+        isAdmin BOOLEAN NOT NULL,
+        createdAt TIMESTAMP DEFAULT CURRENT_DATE,
+        UNIQUE (username)
+    );
 `;
 
 module.exports.posts = `
     CREATE TABLE Posts (
-    id SERIAL PRIMARY KEY,
-    body TEXT,
-    title VARCHAR(80),
-    author VARCHAR(80),
-    tags VARCHAR(20)[],
-    createdAt TIMESTAMP DEFAULT CURRENT_DATE
+        id SERIAL PRIMARY KEY,
+        body TEXT,
+        title VARCHAR(80),
+        author VARCHAR(80),
+        tags VARCHAR(20)[],
+        createdAt TIMESTAMP DEFAULT CURRENT_DATE
     );
 `;
 

@@ -6,19 +6,21 @@ const { errorResponse, unauthorizeError } = require('../utils');
 const Auth = require('../services/Auth');
 const authenticate = require('../middlewares/auth');
 const requiredFields = require('../middlewares/requiredFields');
+const isAdmin = require('../middlewares/isAdmin');
 
 const usernameAndPasswordRequired = requiredFields(['username', 'password']);
 
 const signTokenAndRespond = (res, payload) => {
   const token = Auth.signToken(payload);
+  console.log({ payload }, payload.isadmin);
   return res.send({
     username: payload.username,
-    isAdmin: payload.isAdmin,
+    isAdmin: payload.isadmin || false,
     token: `${token}`,
   });
 };
 
-router.get('/', authenticate, (req, res) => {
+router.get('/', authenticate, isAdmin, (req, res) => {
   res.send('yeah');
 });
 
@@ -37,7 +39,7 @@ router.post('/login', usernameAndPasswordRequired, async (req, res) => {
 });
 
 router.post('/register', usernameAndPasswordRequired, async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
 
   try {
     if (!(await Users.isUserNameExists(username))) {

@@ -6,23 +6,11 @@ import { Spacer } from '../../../Spacer/Spacer';
 
 const PostView = ({ posts, match }) => {
   const post = posts.find(post => post.id == match.params.postId) || {};
-  
+
   return (
     <>
       <div className={'post-view'}>
-        <header className={'post-header'}>
-          <div>
-            <h2 className={post.tags.length > 0 ? 'margin' : ''}>
-              {post.title}
-            </h2>
-            {post.tags.map(tag => (
-              <span key={tag} className={'tag'}>
-                {tag}
-              </span>
-            ))}
-          </div>
-          <small>{post.date || new Date().toDateString()}</small>
-        </header>
+        <PostHeader post={post} />
         <div>
           <span className="divider" />
         </div>
@@ -32,9 +20,23 @@ const PostView = ({ posts, match }) => {
         />
       </div>
       <Spacer />
-      <CommentsList />
+      <CommentsList postId={match.params.postId} />
     </>
   );
 };
+
+const PostHeader = ({ post }) => (
+  <header className={'post-header'}>
+    <div>
+      <h2 className={post.tags.length > 0 ? 'margin' : ''}>{post.title}</h2>
+      {post.tags.map(tag => (
+        <span key={tag} className={'tag'}>
+          {tag}
+        </span>
+      ))}
+    </div>
+    <small>{post.date || new Date().toDateString()}</small>
+  </header>
+);
 
 export default withRouter(PostView);

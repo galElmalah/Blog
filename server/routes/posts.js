@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Posts = require('../model/posts');
 const authenticate = require('../middlewares/auth');
-// define the home page route
+const isAdmin = require('../middlewares/isAdmin');
+const { errorResponse } = require('../utils');
+
 router.get('/', async (req, res) => {
   const posts = await Posts.getAll();
   const postsWithFakeTags = posts.rows.map((post, i) => ({
@@ -17,7 +19,7 @@ router.get('/:postId', async (req, res) => {
   res.send(post.rows);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, isAdmin, async (req, res) => {
   const { body, title, tags } = req.body;
   const post = {
     body,
@@ -36,7 +38,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:postId', async (req, res) => {
+router.put('/:postId', authenticate, isAdmin, async (req, res) => {
   try {
     const updatedPost = await Posts.updatePostById({
       postId: req.params.postId,
@@ -45,16 +47,16 @@ router.put('/:postId', async (req, res) => {
 
     res.send(updatedPost.rows[0]);
   } catch (err) {
-    console.log(err);
+    return errorResponse(res, { status: 504, message: 'Error' });
   }
 });
 
-router.delete('/:postId', async (req, res) => {
+router.delete('/:postId', authenticate, isAdmin, async (req, res) => {
   try {
     await Posts.deletePostById({ postId: req.params.postId });
     res.send({ postId: req.params.postId });
   } catch (e) {
-    res.status(504).send('error');
+    return errorResponse(res, { status: 504, message: 'Error' });
   }
 });
 

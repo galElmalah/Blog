@@ -1,9 +1,12 @@
 import React from 'react';
-
-export const Comment = ({ comment }) => (
+import * as s from './comment.scss';
+export const Comment = ({ comment: { body, createdat, username } }) => (
   <li className={'comment'}>
-    <div className={'comment-info'}>action section ^</div>
+    <div className={'comment-info'}>
+      <small>{username} </small>
+      <small>{new Date(createdat).toDateString()} </small>
+    </div>
     <span className="divider" />
-    {comment}
+    {body}
   </li>
 );
