@@ -9,7 +9,6 @@ router.get('/:postId', async (req, res) => {
   const { rows: specificPostComments } = await Comment.getPostComments({
     postId,
   });
-  console.log({ postId, specificPostComments });
 
   res.send(specificPostComments);
 });
@@ -29,7 +28,7 @@ router.post('/', authenticate, async (req, res) => {
 router.post('/:commentId/upvote', authenticate, async (req, res) => {
   const { id: userId } = await User.getUser({ username: req.user.username });
   console.log({ userId, token: req.user });
-  const isCommentBelongToCurrentUser = true;
+
   const { rows: response } = await Comment.upvoteComment({
     commentId: req.params.commentId,
   });

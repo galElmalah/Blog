@@ -3,7 +3,7 @@ import * as s from './comment.scss';
 const ArrowIcon = ({ onClick, direction }) => (
   <i
     onClick={onClick}
-    className={`fa fa-angle-${direction}`}
+    className={`fa fa-angle-${direction} arrow`}
     style={{ fontSize: '24px', cursor: 'pointer', margin: '0 5px' }}
   />
 );

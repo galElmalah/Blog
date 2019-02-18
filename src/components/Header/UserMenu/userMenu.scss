@@ -1,5 +1,18 @@
 $mainBlue: rgb(0, 153, 255);
 
+.arrow {
+  transition: color 100ms linear, transform 100ms linear;
+  &:hover {
+    color: $mainBlue;
+  }
+  &:active {
+    transform: translateY(-2px);
+    &.fa-angle-down {
+      transform: translateY(2px);
+    }
+  }
+}
+
 .user-menu {
   padding: 10px;
   background: rgb(50, 42, 63);

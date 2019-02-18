@@ -3,7 +3,7 @@ import * as s from './blog.scss';
 import { PostCard } from './PostCard/PostCard';
 import { Button } from '../../Button/Button';
 import { TagContainer } from '../../Tag';
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 export default class Blog extends React.Component {
   componentDidMount() {
     const { posts, loading } = this.props;
@@ -18,9 +18,9 @@ export default class Blog extends React.Component {
       <>
         <h1 className={'page-title'}>Blog</h1>
         <ActiveTagsList activeTags={activeTags} />
-        <section className={'posts-container'}>
-          <PostsList posts={posts} isLoading={loading} />
-        </section>
+
+        <PostsList posts={posts} isLoading={loading} />
+
         <LoadMoreButton onClick={fetchPosts} disabled={loading} />
       </>
     );
@@ -50,9 +50,13 @@ const loadingState = () => {
 const PostsList = ({ posts, isLoading }) => {
   return (
     <>
-      {posts.map(post => (
-        <PostCard {...post} key={post.id} />
-      ))}
+      <TransitionGroup className={'posts-container'}>
+        {posts.map(post => (
+          <CSSTransition key={post.id} timeout={300} classNames="fade">
+            <PostCard {...post} />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
       {isLoading && loadingState()}
     </>
   );
