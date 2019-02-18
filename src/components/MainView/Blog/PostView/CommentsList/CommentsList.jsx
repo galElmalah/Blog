@@ -16,7 +16,6 @@ export class CommentsList extends Component {
     const { postId } = this.props;
     this.setState({ loading: true });
     API.get(`/comments/${postId}`).then(({ data }) => {
-      console.log(data);
       this.setState({
         loading: false,
         comments: data,

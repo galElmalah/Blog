@@ -3,7 +3,7 @@ module.exports = class Comments {
   static async getPostComments({ postId }) {
     const query = {
       text: `SELECT 
-                body, p.createdAt, username 
+                body, p.createdAt, username, upvotes 
             FROM 
                 Comments p, Users u 
             WHERE 

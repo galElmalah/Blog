@@ -36,13 +36,17 @@ export class Login extends Component {
     });
   };
 
+  navigateBackToBlog = ({ success }) => {
+    success && this.props.history.push('/blog');
+  };
+
   onSubmit = () => {
     const { loginUser } = this.props;
     if (someEmpty(Object.values(this.state))) {
       this.setEmptyFields();
       return;
     }
-    loginUser(this.state);
+    loginUser(this.state).then(this.navigateBackToBlog);
   };
 
   checkForErrors = fieldName => {

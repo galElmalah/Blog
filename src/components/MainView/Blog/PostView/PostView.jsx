@@ -25,17 +25,17 @@ const PostView = ({ posts, match }) => {
   );
 };
 
-const PostHeader = ({ post }) => (
+const PostHeader = ({ post: { tags = [], date, title } }) => (
   <header className={'post-header'}>
     <div>
-      <h2 className={post.tags.length > 0 ? 'margin' : ''}>{post.title}</h2>
-      {post.tags.map(tag => (
+      <h2 className={tags && tags.length > 0 ? 'margin' : ''}>{title}</h2>
+      {tags.map(tag => (
         <span key={tag} className={'tag'}>
           {tag}
         </span>
       ))}
     </div>
-    <small>{post.date || new Date().toDateString()}</small>
+    <small>{date || new Date().toDateString()}</small>
   </header>
 );
 

@@ -53,9 +53,11 @@ export const apiMiddleware = ({
     console.groupEnd();
 
     dispatch(onSuccess(response));
+    return Promise.resolve({ success: true, payload: response });
   } catch (err) {
     onFailure
       ? dispatch(onFailure(err, label))
       : dispatch(defaultErrorAction(err, label));
+    return Promise.resolve({ success: false, error: err });
   }
 };
