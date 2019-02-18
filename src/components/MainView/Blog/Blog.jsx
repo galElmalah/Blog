@@ -8,7 +8,7 @@ export default class Blog extends React.Component {
   componentDidMount() {
     const { posts, loading } = this.props;
     if (!posts.length && !loading) {
-      this.props.fetchPosts().then(console.log);
+      this.props.fetchPosts();
     }
   }
 

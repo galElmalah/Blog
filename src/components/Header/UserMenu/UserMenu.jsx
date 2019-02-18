@@ -23,13 +23,15 @@ const NotLoggedInMenuDisplay = () => {
   );
 };
 
-export const UserMenu = ({ currentlyLoggedInUser, isAdmin }) => {
+export const UserMenu = ({ currentlyLoggedInUser, isAdmin, logoutUser }) => {
   return (
     <div className={'user-menu'}>
       {currentlyLoggedInUser ? (
         <>
           <UserDisplay username={currentlyLoggedInUser} />
-          <button className={'log-out-btn'}>{'LOG OUT'}</button>
+          <button className={'log-out-btn'} onClick={logoutUser}>
+            {'LOG OUT'}
+          </button>
         </>
       ) : (
         <NotLoggedInMenuDisplay />

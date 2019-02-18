@@ -3,7 +3,7 @@ const router = express.Router();
 const Comment = require('../model/comment');
 const authenticate = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
-
+const User = require('../model/user');
 router.get('/:postId', async (req, res) => {
   const { postId } = req.params;
   const { rows: specificPostComments } = await Comment.getPostComments({
@@ -27,6 +27,9 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 router.post('/:commentId/upvote', authenticate, async (req, res) => {
+  const { id: userId } = await User.getUser({ username: req.user.username });
+  console.log({ userId, token: req.user });
+  const isCommentBelongToCurrentUser = true;
   const { rows: response } = await Comment.upvoteComment({
     commentId: req.params.commentId,
   });

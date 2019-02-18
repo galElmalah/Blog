@@ -1,8 +1,23 @@
-import { API, USER_LOGIN_SUCCESS, LOGIN_REQUEST } from '../../actions/actions';
+import {
+  API,
+  USER_LOGIN_SUCCESS,
+  LOGIN_REQUEST,
+  USER_LOGOUT,
+} from '../../actions/actions';
 
 const setUser = ({ username, isAdmin, token = '' }) => ({
   type: USER_LOGIN_SUCCESS,
   payload: { username, token, isAdmin },
+  meta: {
+    persist: true,
+  },
+});
+
+export const logoutUser = () => ({
+  type: USER_LOGOUT,
+  meta: {
+    persist: true,
+  },
 });
 
 export const loginUser = credentials => ({

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { UserMenu } from '../../components/Header/UserMenu/UserMenu';
+import { logoutUser } from '../../store/actionCreators/login';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = state => ({
@@ -7,4 +8,9 @@ const mapStateToProps = state => ({
   currentlyLoggedInUser: state.user.currentlyLoggedInUser,
 });
 
-export default withRouter(connect(mapStateToProps)(UserMenu));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser }
+  )(UserMenu)
+);
