@@ -26,16 +26,25 @@ export class PostsManager extends Component {
   }
 }
 
-const PostThumbnail = ({ title, status = 'published', id, onPostDelete }) => (
+const PostThumbnail = ({
+  title,
+  status = 'published',
+  id,
+  onPostDelete,
+  publishPost,
+  unpublishPost,
+}) => (
   <div className="post-thumbnail">
     <span className="title">{title}</span>
     <StatusBanner status={status} />
     <ActionMenu>
       <div className={'actions-container'}>
-        <div className={'action'} onClick={() => {}}>
+        <div className={'action'} onClick={publishPost}>
           Publish post
         </div>
-        <div className={'action'}>unpublish post</div>
+        <div className={'action'} onClick={unpublishPost}>
+          unpublish post
+        </div>
         <div className={'action'}>
           <Link to={`/cms/create-post/${id}`}>edit post</Link>
         </div>
@@ -48,7 +57,7 @@ const PostThumbnail = ({ title, status = 'published', id, onPostDelete }) => (
 );
 
 const StatusBanner = ({ status }) => (
-  <span className={`status ${status.toLowerCase()}`}>{status}</span>
+  <span className={`status ${'published'}`}>{'PUBLISH'}</span>
 );
 
 class ActionMenu extends Component {

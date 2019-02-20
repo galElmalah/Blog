@@ -8,7 +8,31 @@ import {
   UPDATE_POST_REQUEST,
   FETCH_POSTS,
   SET_POSTS,
+  PUBLISH_POST,
+  UNPUBLISH_POST,
 } from '../../actions/actions';
+
+export const publishPost = postId => ({
+  type: API,
+  payload: {
+    data: postId,
+    method: 'POST',
+    url: `/posts/${postId}/publish`,
+    onSuccess: onCreatePostSuccess,
+    label: PUBLISH_POST + '_REQUEST',
+  },
+});
+
+export const unpublishPost = postId => ({
+  type: API,
+  payload: {
+    data: postId,
+    method: 'POST',
+    url: `/posts/${postId}/unpublish`,
+    onSuccess: onCreatePostSuccess,
+    label: UNPUBLISH_POST + '_REQUEST',
+  },
+});
 
 const onCreatePostSuccess = post => ({
   type: CREATE_POST_SUCCESS,

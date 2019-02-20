@@ -3,7 +3,10 @@ import logger from 'redux-logger';
 import { apiMiddleware } from './middleware/apiMiddleware';
 import { persistStateMiddleware } from './middleware/persistStateMiddleware';
 import rootReducer from './reducers';
-const initialState = JSON.parse(window.localStorage.getItem('reduxState'));
+const initialState = JSON.parse(window.localStorage.getItem('reduxState')) || {
+  user: {},
+  blog: {},
+};
 console.log({ initialState });
 
 const store = createStore(

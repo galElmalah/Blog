@@ -65,7 +65,8 @@ export class PostCreator extends Component {
 
   render() {
     const { loading } = this.props;
-    const { title, tags, tag, value, error } = this.state;
+    const { title, tags, tag, value, error, image } = this.state;
+    console.log(image);
     return (
       <>
         {error && (
@@ -89,6 +90,22 @@ export class PostCreator extends Component {
           onKeyUp={this.onEnterPress}
           title={'Enter tag'}
         />
+        <Spacer />
+        <div className={'image-input'}>
+          <Input
+            name={'image'}
+            type={'file'}
+            onChange={e => {
+              const files = Array.from(e.target.files);
+              const formData = new FormData();
+
+              files.forEach((file, i) => formData.append(i, file));
+              console.log(window.URL.createObjectURL(e.target.files[0]));
+              this.setState({ image: formData });
+            }}
+            title={'Upload image'}
+          />
+        </div>
         <Spacer />
         <TagsList removeTag={this.removeTag} tags={tags} />
         <Spacer />

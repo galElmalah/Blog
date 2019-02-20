@@ -4,7 +4,7 @@ module.exports.user = `
         username VARCHAR(80),
         email VARCHAR(80),
         password TEXT,
-        isAdmin BOOLEAN NOT NULL,
+        isAdmin BOOLEAN DEFAULT false,
         createdAt TIMESTAMP DEFAULT CURRENT_DATE,
         UNIQUE (username)
     );
@@ -17,7 +17,10 @@ module.exports.posts = `
         title VARCHAR(80),
         author VARCHAR(80),
         tags VARCHAR(20)[],
-        createdAt TIMESTAMP DEFAULT CURRENT_DATE
+        status VARCHAR(22),
+        imageUrl VARCHAR(255),
+        createdAt TIMESTAMP DEFAULT CURRENT_DATE,
+        CHECK (status IN('PUBLISHED', 'UNPUBLISHED'))
     );
 `;
 

@@ -51,6 +51,14 @@ router.put('/:postId', authenticate, isAdmin, async (req, res) => {
   }
 });
 
+router.post('/:postId/publish', authenticate, isAdmin, async (req, res) => {
+  console.log('publish post');
+});
+
+router.post('/:postId/unpublish', authenticate, isAdmin, async (req, res) => {
+  console.log('unpublish post');
+});
+
 router.delete('/:postId', authenticate, isAdmin, async (req, res) => {
   try {
     await Posts.deletePostById({ postId: req.params.postId });
