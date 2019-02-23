@@ -20,10 +20,10 @@ export const logoutUser = () => ({
   },
 });
 
-export const loginUser = credentials => ({
+export const loginUser = ({ username, password }) => ({
   type: API,
   payload: {
-    data: credentials,
+    data: { username, password },
     method: 'POST',
     url: '/login',
     onSuccess: setUser,
@@ -31,10 +31,10 @@ export const loginUser = credentials => ({
   },
 });
 
-export const registerUser = credentials => ({
+export const registerUser = ({ username, password, email }) => ({
   type: API,
   payload: {
-    data: credentials,
+    data: { username, password, email },
     method: 'POST',
     url: '/register',
     onSuccess: setUser,
