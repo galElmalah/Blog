@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as s from './login.scss';
 import { Button } from '../../Button/Button';
 import { Input } from '../../Input/Input';
-import { errorMessages, someEmpty } from '../Register/utils';
-import FormManager from '../../FormManager/FormManager';
+import FormManager from '../../FormManager';
+
 const AlreadyLoggedInMessage = ({ username }) => {
   return (
     <div className={'loggedin-message'}>
@@ -24,7 +24,6 @@ export const Login = ({
   currentlyLoggedInUser,
   loginUser,
 }) => {
-  
   if (isLoggedIn) {
     return <AlreadyLoggedInMessage username={currentlyLoggedInUser} />;
   }

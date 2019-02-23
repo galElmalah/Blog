@@ -2,7 +2,7 @@ import React from 'react';
 import * as s from './register.scss';
 import { Button } from '../../Button/Button';
 import { Input } from '../../Input/Input';
-import FormManager from '../../FormManager/FormManager';
+import FormManager from '../../FormManager';
 
 const formInitialData = {
   username: '',
