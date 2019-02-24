@@ -20,9 +20,7 @@ export const Register = ({ loading, registerUser }) => {
         onSubmitAction={registerUser}
       >
         {({
-          email,
-          username,
-          password,
+          formData,
           onChange,
           onKeyPressHandler,
           onSubmit,
@@ -31,7 +29,7 @@ export const Register = ({ loading, registerUser }) => {
           <div className={'form-wrapper'} onKeyUp={onKeyPressHandler}>
             <Input
               error={checkForErrors('email')}
-              value={email}
+              value={formData.email}
               name={'email'}
               type={'email'}
               onChange={onChange}
@@ -39,7 +37,7 @@ export const Register = ({ loading, registerUser }) => {
             />
             <Input
               error={checkForErrors('username')}
-              value={username}
+              value={formData.username}
               name={'username'}
               type={'text'}
               onChange={onChange}
@@ -47,7 +45,7 @@ export const Register = ({ loading, registerUser }) => {
             />
             <Input
               error={checkForErrors('password')}
-              value={password}
+              value={formData.password}
               name={'password'}
               type={'password'}
               onChange={onChange}

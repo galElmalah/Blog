@@ -6,7 +6,9 @@ class FromManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...props.formInitialData,
+      formData: {
+        ...props.formInitialData,
+      },
       onChange: this.onChange,
       setEmptyFields: this.setEmptyFields,
       onSubmit: this.onSubmit,
@@ -16,17 +18,39 @@ class FromManager extends React.Component {
     };
   }
 
-  onChange = ({ target: { name, value } }) => this.setState({ [name]: value });
+  onChange = ({ target: { name, value } }) => {
+    this.removeFromErrors(name, 'EMPTY');
+
+    this.setState(prevState => ({
+      formData: { ...prevState.formData, [name]: value },
+    }));
+  };
 
   setEmptyFields = () => {
-    Object.entries(this.state).forEach(([key, value]) => {
+    Object.entries(this.state.formData).forEach(([key, value]) => {
       if (!value) {
         this.setState(prevState => ({
-          errors: { ...prevState.errors, [key]: errorMessages(key) },
+          errors: {
+            ...prevState.errors,
+            [key]: { msg: errorMessages(key), type: 'EMPTY' },
+          },
         }));
       }
     });
   };
+
+  shouldRemoveError(errorObject, type) {
+    return errorObject && errorObject.msg && errorObject.type === type;
+  }
+
+  removeFromErrors(fieldName, errorType) {
+    const { errors } = this.state;
+    if (this.shouldRemoveError(errors[fieldName], errorType)) {
+      this.setState(prevState => ({
+        errors: { ...prevState.errors, [fieldName]: {} },
+      }));
+    }
+  }
 
   navigateBackToBlog = ({ success }) => {
     success && this.props.history.push(`/blog`);
@@ -34,15 +58,18 @@ class FromManager extends React.Component {
 
   onSubmit = () => {
     const { onSubmitAction } = this.props;
-    if (someEmpty(Object.values(this.state))) {
+    const { formData } = this.state;
+
+    if (someEmpty(Object.values(formData))) {
       this.setEmptyFields();
       return;
     }
-    onSubmitAction(this.state).then(this.navigateBackToBlog);
+
+    onSubmitAction(formData).then(this.navigateBackToBlog);
   };
 
   checkForErrors = fieldName => {
-    return this.state.errors[fieldName];
+    return !!(this.state.errors[fieldName] && this.state.errors[fieldName].msg);
   };
 
   onKeyPressHandler = ({ key }) => key === 'Enter' && this.onSubmit();

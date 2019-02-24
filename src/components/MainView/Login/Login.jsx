@@ -33,8 +33,7 @@ export const Login = ({
       <h1 className={'page-title'}>Login</h1>
       <FormManager formInitialData={formInitialData} onSubmitAction={loginUser}>
         {({
-          username,
-          password,
+          formData,
           onChange,
           onKeyPressHandler,
           onSubmit,
@@ -44,7 +43,7 @@ export const Login = ({
             <div className={'form-wrapper'} onKeyUp={onKeyPressHandler}>
               <Input
                 error={checkForErrors('username')}
-                value={username}
+                value={formData.username}
                 name={'username'}
                 type={'text'}
                 onChange={onChange}
@@ -52,7 +51,7 @@ export const Login = ({
               />
               <Input
                 error={checkForErrors('password')}
-                value={password}
+                value={formData.password}
                 name={'password'}
                 type={'password'}
                 onChange={onChange}
