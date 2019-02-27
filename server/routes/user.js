@@ -47,6 +47,7 @@ router.post('/register', usernameAndPasswordRequired, async (req, res) => {
       await Users.createUser({
         username,
         password: hashedPassword,
+        
       });
       return signTokenAndRespond(res, { username, password });
     }

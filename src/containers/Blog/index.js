@@ -10,10 +10,10 @@ const mapStateToProps = state => {
   };
 };
 
-const postsSelector = ({ blog: { posts, filterByTags } }) => {
+const postsSelector = ({ blog: { publicPosts, filterByTags } }) => {
   return Object.keys(filterByTags).length > 0
-    ? posts.filter(post => post.tags.some(tag => filterByTags[tag]))
-    : posts;
+    ? publicPosts.filter(post => post.tags.some(tag => filterByTags[tag]))
+    : publicPosts;
 };
 
 const mapDispatchToProps = {

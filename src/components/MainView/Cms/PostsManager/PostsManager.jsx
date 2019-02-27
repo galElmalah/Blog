@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export class PostsManager extends Component {
   componentDidMount() {
     if (this.props.posts.length === 0) {
-      this.props.fetchPosts();
+      this.props.fetchAllPosts();
     }
   }
 

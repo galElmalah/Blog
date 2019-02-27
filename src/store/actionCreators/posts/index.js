@@ -10,6 +10,7 @@ import {
   SET_POSTS,
   PUBLISH_POST,
   UNPUBLISH_POST,
+  SET_PRIVATE_POSTS,
 } from '../../actions/actions';
 
 export const publishPost = postId => ({
@@ -88,6 +89,17 @@ export const fetchPosts = () => ({
   payload: {
     url: '/posts',
     onSuccess: setPosts,
+    label: FETCH_POSTS,
+  },
+});
+
+const setPrivatePosts = posts => ({ type: SET_PRIVATE_POSTS, payload: posts });
+
+export const fetchAllPosts = () => ({
+  type: API,
+  payload: {
+    url: '/posts/all',
+    onSuccess: setPrivatePosts,
     label: FETCH_POSTS,
   },
 });

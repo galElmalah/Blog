@@ -10,11 +10,13 @@ import {
   DELETE_POST_REQUEST,
   UPDATE_POST_SUCCESS,
   UPDATE_POST_REQUEST,
+  SET_PRIVATE_POSTS
 } from '../../actions/actions';
 import { combineReducers } from 'redux';
 
 const initialState = {
-  posts: [],
+  publicPosts: [],
+  privatePosts: [],
   filterByTags: {},
   loading: false,
 };
@@ -45,9 +47,24 @@ const updatePostById = (posts, updatedPost) => {
   return posts.map(post => (post.id === updatedPost.id ? updatedPost : post));
 };
 
-function posts(state = initialState.posts, action) {
+function publicPosts(state = initialState.publicPosts, action) {
   switch (action.type) {
     case SET_POSTS:
+      return [...state, ...action.payload];
+    case CREATE_POST_SUCCESS:
+      return [...state, action.payload];
+    case DELETE_POST_SUCCESS:
+      return removePostById(state, action.payload);
+    case UPDATE_POST_SUCCESS:
+      return updatePostById(state, action.payload);
+    default:
+      return state;
+  }
+}
+
+function privatePosts(state = initialState.privatePosts, action) {
+  switch (action.type) {
+    case SET_PRIVATE_POSTS:
       return [...state, ...action.payload];
     case CREATE_POST_SUCCESS:
       return [...state, action.payload];
@@ -73,4 +90,9 @@ function filterByTags(state = initialState.filterByTags, action) {
   }
 }
 
-export default combineReducers({ loading, filterByTags, posts });
+export default combineReducers({
+  loading,
+  filterByTags,
+  privatePosts,
+  publicPosts,
+});

@@ -5,6 +5,15 @@ const authenticate = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
 const { errorResponse } = require('../utils');
 
+router.get('/all', authenticate, isAdmin, async (req, res) => {
+  const posts = await Posts.getAll();
+  const postsWithFakeTags = posts.rows.map((post, i) => ({
+    ...post,
+    imageUrl: '/test.jpg',
+  }));
+  res.send(postsWithFakeTags);
+});
+
 router.get('/', async (req, res) => {
   const posts = await Posts.getAll();
   const postsWithFakeTags = posts.rows.map((post, i) => ({

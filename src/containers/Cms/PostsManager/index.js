@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { PostsManager } from '../../../components/MainView/Cms/PostsManager/PostsManager';
-import { deletePost, fetchPosts } from '../../../store/actionCreators/posts';
+import { deletePost, fetchAllPosts } from '../../../store/actionCreators/posts';
 import {} from '../../../store/actionCreators';
 
 const mapStateToProps = state => ({
-  posts: state.blog.posts,
+  posts: state.blog.privatePosts,
 });
 
-const mapDispatchToProps = { fetchPosts, deletePost };
+const mapDispatchToProps = { fetchAllPosts, deletePost };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
